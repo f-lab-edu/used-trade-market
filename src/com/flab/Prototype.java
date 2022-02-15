@@ -1,7 +1,5 @@
 package com.flab;
 
-import java.lang.reflect.Member;
-
 public class Prototype {
     public static void main(String[] args) {
 
@@ -26,7 +24,7 @@ public class Prototype {
         List<Item> normalList = member.viewItemList();
 
         // 회원만 이용 가능
-        if(member.getId().isEmpty()) {
+        if(member.getId().isEmpty() || member.getId() == null) {
             member.goLogin();
         }
 
