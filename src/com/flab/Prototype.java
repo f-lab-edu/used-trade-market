@@ -1,5 +1,7 @@
 package com.flab;
 
+import java.lang.reflect.Member;
+
 public class Prototype {
     public static void main(String[] args) {
 
@@ -15,7 +17,7 @@ public class Prototype {
          * 기본기능
          * */
         // 회원가입
-        member.join();
+        member.join(member);
 
         //추천 리스트 보여주기
         List<Item> recommendList = member.recommendList();
@@ -24,7 +26,11 @@ public class Prototype {
         List<Item> normalList = member.viewItemList();
 
         // 회원만 이용 가능
-        if(member.getId().isEmpty() || member.getId() == null) {
+        //if(member.getId() == null || member.getId().isEmpty()) {
+        /**
+         * 회원인지 아닌지 체크 후 회원이 아니면 로그인 메소드를 타도록 함.
+         * */
+        if(!member.isRegistered()) {
             member.goLogin();
         }
 
@@ -47,16 +53,12 @@ public class Prototype {
         buyer.sendMessage(item.itemNo);
 
         /**
-         * checkDeal()을 통해 택배배송인지 직거래인지 체크해서 1이면 택배배송 그렇지 않으면 직거래를 하도록 함
+         * isDirectTransaction()을 통해 택배배송인지 직거래인지 체크해서 true 직거래 그렇지 않으면 택배거래를 하도록 함
          * */
-        if(buyer.checkDeal() == 1) {
-            // 택배배송
-            buyer.courierServiceBuy(item.itemNo);
-        } else  {
-            // 직거래
-            buyer.directTransaction(item.itemNo);
-        }
+        // 삼항연산자로 변경
+        buyer.isDirectTransaction(item.itemNo) ? buyer.directTransaction(item.itemNo) : buyer.courierServiceBuy(item.itemNo);
 
     }
 }
+
 
