@@ -9,7 +9,7 @@ public class Item {
     /**
      * 상품번호
      * */
-    private String itemNo;
+    public String itemNo;
 
     /**
      * 상품이미지
@@ -71,4 +71,9 @@ public class Item {
      * */
     private int itemNum;
 
+    public Item() {}
+
+    public Item(String itemNo) {
+        this.itemNo = itemNo;
+    }
 }

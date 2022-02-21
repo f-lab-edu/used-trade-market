@@ -1,5 +1,8 @@
 package com.flab;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Date;
 
 /**
@@ -10,7 +13,10 @@ import java.util.Date;
  *
  * */
 public class Buyer {
-    /** 
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    /**
      * 택배 배송지
      * */
     private String shippingAddress;
@@ -30,12 +36,7 @@ public class Buyer {
      * */ 
     private int payMoney;
     
-    /** 
-     * 회사(중개자)
-     * */
-    private Company company;
-    
-    /** 
+    /**
      * 구매일자
      * */
     private Date buydate;
@@ -50,6 +51,10 @@ public class Buyer {
      * */
     protected boolean zzim(String itemNo) {
         boolean result = false;
+        logger.info("----------------");
+        logger.info("zzim method");
+        logger.debug("parameter itemNo : " + itemNo);
+        logger.info("----------------");
         return result;
     }
 
@@ -59,17 +64,10 @@ public class Buyer {
      * @param itemNo 상품 번호
      * */
     protected void sendMessage(String itemNo) {
-    }
-
-    /**
-     * 상품번호가 <code>itemNo</code>인 상품의 구매 방법을 선택하는 메소드로 return 값이 0일 때는 택배배송,
-     * 1일 경우 직거래로 정의한다.
-     * <code>itemNo</code>가 <code>null</code>인 경우에 NullPointException을 반환한다.
-     * @param itemNo 상품번호
-     * */
-    protected int selectServiceType(String itemNo) {
-        int result = 0;
-        return result;
+        logger.info("-------------------");
+        logger.info("sendMessage method");
+        logger.debug("parameter itemNo : " + itemNo);
+        logger.info("-------------------");
     }
 
     /**
@@ -80,18 +78,21 @@ public class Buyer {
      * */
     protected boolean courierServiceBuy(String itemNo) {
         boolean result = false;
+        logger.info("----------------------");
 
+        Company company = new Company();
         sendMoneyBuyerToCompany(itemNo);
         delivery(itemNo);
 
         if(this.purchaseConfirmation(itemNo)) {
-            // 들여쓰기 수정
             company.sendMoneyCompanyToSeller(itemNo);
             addPoint(itemNo);
         } else {
             company.sendMoneyCompanyToBuyer(itemNo);
         }
+        logger.info("----------------------");
         return result;
+
     }
 
     /**
@@ -102,7 +103,12 @@ public class Buyer {
      * */
     protected boolean directTransaction(String itemNo) {
         boolean result = false;
+        logger.info("----------------------");
+        logger.info("directTransaction method");
+        logger.debug("parameter itemNo : " + itemNo);
         sendMoneyBuyerToCompany(itemNo);
+
+        Company company = new Company();
 
         if(this.purchaseConfirmation(itemNo)) {
             company.sendMoneyCompanyToSeller(itemNo);
@@ -110,6 +116,7 @@ public class Buyer {
         } else {
             company.sendMoneyCompanyToBuyer(itemNo);
         }
+        logger.info("----------------------");
         return result;
     }
 
@@ -122,9 +129,13 @@ public class Buyer {
      * */
     protected boolean purchaseConfirmation(String itemNo) {
         boolean result = false;
+        logger.info("----------------------");
+        logger.info("purchaseConfirmation method");
+        logger.debug("parameter itemNo : " + itemNo);
         if(autopurchaseConfirmation(itemNo)) {
             result = true;
         }
+        logger.info("----------------------");
         return result;
     }
 
@@ -136,6 +147,10 @@ public class Buyer {
      * */
     protected boolean sendMoneyBuyerToCompany(String itemNo) {
         boolean result = false;
+        logger.info("----------------------");
+        logger.info("sendMoneyBuyerToCompany method");
+        logger.debug("parameter itemNo : " + itemNo);
+        logger.info("----------------------");
         return result;
     }
 
@@ -147,6 +162,10 @@ public class Buyer {
      * */
     protected boolean addPoint(String itemNo) {
         boolean result = false;
+        logger.info("----------------------");
+        logger.info("addPoint Method");
+        logger.debug("parameter itemNo : " + itemNo);
+        logger.info("----------------------");
         return result;
     }
 
@@ -169,6 +188,51 @@ public class Buyer {
      * */
     protected boolean autopurchaseConfirmation(String itemNo) {
         boolean result=  true;
+        logger.info("----------------------");
+        logger.info("autopurchaseConfirmation method");
+        logger.debug("parameter itemNo : " + itemNo);
+        logger.info("----------------------");
         return true;
+    }
+
+    /**
+     * 사용자가 선택한 상품의 정보를 갖고 오는 메소드로 <code>itemNo</code>인 상품 번호를 파라미터로 받아 상품 정보를 갖고오는 메소드
+     * <code>itemNo</code>가 <code>null</code>인 경우에는 NullPointException을 반환한다.
+     * @param itemNo 상품번호
+     * */
+    protected Item selectItem(String itemNo) {
+        logger.info("-------------------");
+        logger.info("selectItem method");
+        logger.debug("parameter itemNo : " + itemNo);
+        logger.info("-------------------");
+        return new Item(itemNo);
+    }
+
+    /**
+     * selectDealType 구매자가 거래 방법을 선택하는 메소드로 <code>dealType</code>을 통해 직거래인지 택배배송인지 체크하여 반환한다.
+     * <code>dealType</code>이 <code>null</code>인 경우에는 NullPointException을 반환한다.
+     * */
+    protected String selectDealType(String dealType) {
+        logger.info("----------------------");
+        logger.info("selectDealType method");
+        logger.debug("parameter dealType : " + dealType);
+        logger.info("----------------------");
+        return dealType;
+    }
+
+    /**
+     * <code>dealType</code>는 거래 방법을 의미하는 파라미터로 해당 파라미터를 통해 직거래이면 <code>true</code> 직거래가 아니라 택배거래이면
+     * <code>false</code>를 반환한다.
+     * <code>dealType</code>이 없으면 NullPointException을 반환한다.
+     * @param dealType
+     * return result
+     * */
+    protected boolean isDirectTransaction(String dealType) {
+        boolean result = false;
+        logger.info("----------------------");
+        logger.info("isDirectTransaction method");
+        logger.debug("parameter dealType : " + dealType);
+        logger.info("----------------------");
+        return result;
     }
 }

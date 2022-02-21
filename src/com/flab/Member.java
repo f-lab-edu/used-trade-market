@@ -37,9 +37,12 @@ public class Member {
     private String memberType;
 
     /**
-     * 비로그인 시 로그인 화면으로 보내는 메소드
+     * 로그인 화면으로 보내는 메소드로 로그인 되어 있지 않은 경우에 호출되는 메소드
      * */
     public void goLogin() {
+        logger.info("-------------------------");
+        logger.info("Go login");
+        logger.info("-------------------------");
     }
 
     /**
@@ -54,7 +57,7 @@ public class Member {
 
         logger.info("-------------------------");
         logger.info("Member join method");
-        logger.info("parameter : " + member);
+        logger.debug("parameter : " + member);
         logger.info("-------------------------");
 
         return result;
@@ -69,7 +72,7 @@ public class Member {
 
         logger.info("-------------------------");
         logger.info("Item recommendList");
-        logger.info("parameter member : " + member);
+        logger.debug("parameter member : " + member);
         logger.info("return List");
         logger.info("-------------------------");
 
@@ -86,7 +89,7 @@ public class Member {
     public List<Item> viewItemList(Item item) {
         logger.info("-------------------------");
         logger.info("Item viewItemList");
-        logger.info("parameter Item(category) : " + item);
+        logger.debug("parameter Item(category) : " + item);
         logger.info("return List");
         logger.info("-------------------------");
         return new ArrayList<Item>();
@@ -102,7 +105,7 @@ public class Member {
         boolean result = true;
         logger.info("-------------------------");
         logger.info("isRegistered Method");
-        logger.info("parameter : " + member);
+        logger.debug("parameter : " + member);
         logger.info("-------------------------");
         return result;
     }
