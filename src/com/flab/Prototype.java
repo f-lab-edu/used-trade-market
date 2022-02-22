@@ -16,6 +16,7 @@ public class Prototype {
         Item item = new Item();
         Seller seller = new Seller();
         Buyer buyer = new Buyer();
+        TransactionService transactionService = new TransactionService();
 
         /**
          * 기본기능
@@ -24,10 +25,10 @@ public class Prototype {
         member.join(member);
 
         //추천 리스트 보여주기
-        List<Item> recommendList = member.recommendList(member);
+        List<Item> recommendList = transactionService.recommendList(member);
 
         // 상품 리스트 보여주기
-        List<Item> normalList = member.viewItemList(item);
+        List<Item> normalList = transactionService.viewItemList(item);
 
         /**
          * 회원인지 아닌지 체크 후 회원이 아니면 로그인 메소드를 타도록 함.
