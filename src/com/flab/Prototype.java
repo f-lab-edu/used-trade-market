@@ -3,6 +3,7 @@ package com.flab;
 import org.apache.log4j.BasicConfigurator;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class Prototype {
     public static void main(String[] args) {
@@ -61,8 +62,11 @@ public class Prototype {
         /**
          * isDirectTransaction()을 통해 택배배송인지 직거래인지 체크해서 true 직거래 그렇지 않으면 택배거래를 하도록 함
          * */
-        // 삼항연산자로 변경
-        boolean check = buyer.isDirectTransaction(selectDealType) ? buyer.directTransaction(selectItem.itemNo) : buyer.courierServiceBuy(selectItem.itemNo);
+        boolean checkIsDirectTransaction = buyer.isDirectTransaction(selectDealType);
+
+        // if문 제거 람다식으로 변환
+        Function<Boolean, Boolean> isDirectTransaction = check -> true ? buyer.directTransaction(selectItem.itemNo) : buyer.courierServiceBuy(selectItem.itemNo);
+        isDirectTransaction.apply(checkIsDirectTransaction);
 
     }
 }
