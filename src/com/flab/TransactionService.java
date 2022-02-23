@@ -40,4 +40,19 @@ public class TransactionService {
         logger.info("-------------------------");
         return new ArrayList<Item>();
     }
+
+    /**
+     * 회원만 사용할 수 있도록 체크하는 메서드
+     * 회원 정보가 <code>member</code>인 객체를 확인하고 정보가 없으면 false를 반환하고 정보가 있으면 true를 반환한다.
+     * @param member
+     * @return result
+     * */
+    public boolean isRegistered(Member member) {
+        boolean result = true;
+        logger.info("-------------------------");
+        logger.info("isRegistered Method");
+        logger.debug("parameter : " + member);
+        logger.info("-------------------------");
+        return result;
+    }
 }

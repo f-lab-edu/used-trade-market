@@ -33,7 +33,7 @@ public class Prototype {
         /**
          * 회원인지 아닌지 체크 후 회원이 아니면 로그인 메소드를 타도록 함.
          * */
-        if(!member.isRegistered(member)) {
+        if(!transactionService.isRegistered(member)) {
             member.goLogin();
         }
 
@@ -57,13 +57,14 @@ public class Prototype {
 
         /**
          * 구매자가 거래방법 체크하는 메소드 추가
+         * enum 클래스 활용하여 사용자가 직거래나 택배거래를 선택하면 해당 코드 반환
          * */
-        String selectDealType = buyer.selectDealType("dealType");
+        int selectDealTypeCode = DealType.courierServiceBuy.getDealTypeCode();
 
         /**
          * isDirectTransaction()을 통해 택배배송인지 직거래인지 체크해서 true 직거래 그렇지 않으면 택배거래를 하도록 함
          * */
-        boolean checkIsDirectTransaction = buyer.isDirectTransaction(selectDealType);
+        boolean checkIsDirectTransaction = buyer.isDirectTransaction(selectDealTypeCode);
 
         // if문 제거 람다식으로 변환
         Function<Boolean, Boolean> isDirectTransaction = check -> true ? buyer.directTransaction(selectItem.itemNo) : buyer.courierServiceBuy(selectItem.itemNo);
