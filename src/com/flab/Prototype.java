@@ -17,12 +17,13 @@ public class Prototype {
         Seller seller = new Seller();
         Buyer buyer = new Buyer();
         TransactionService transactionService = new TransactionService();
+        MemberManager memberManager = new MemberManager();
 
         /**
          * 기본기능
          * */
         // 회원가입
-        member.join(member);
+        memberManager.registerMember(member);
 
         //추천 리스트 보여주기
         List<Item> recommendList = transactionService.recommendList(member);
