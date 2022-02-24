@@ -224,14 +224,14 @@ public class Buyer {
      * <code>dealType</code>는 거래 방법을 의미하는 파라미터로 해당 파라미터를 통해 직거래이면 <code>true</code> 직거래가 아니라 택배거래이면
      * <code>false</code>를 반환한다.
      * <code>dealType</code>이 없으면 NullPointException을 반환한다.
-     * @param dealType
+     * @param selectDealTypeCode
      * return result
      * */
-    protected boolean isDirectTransaction(String dealType) {
+    protected boolean isDirectTransaction(int selectDealTypeCode) {
         boolean result = false;
         logger.info("----------------------");
         logger.info("isDirectTransaction method");
-        logger.debug("parameter dealType : " + dealType);
+        logger.debug("parameter dealType : " + selectDealTypeCode);
         logger.info("----------------------");
         return result;
     }
