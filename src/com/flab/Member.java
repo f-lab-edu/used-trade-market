@@ -45,13 +45,4 @@ public class Member {
                 ", memberType='" + memberType + '\'' +
                 '}';
     }
-
-    /**
-     * 로그인 화면으로 보내는 메소드로 로그인 되어 있지 않은 경우에 호출되는 메소드
-     * */
-    public void goLogin() {
-        logger.info("-------------------------");
-        logger.info("Go login");
-        logger.info("-------------------------");
-    }
 }
