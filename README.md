@@ -3,3 +3,5 @@
 1. 프로토타입 작성
 2. 로그 적용 => 블로그 정리
    https://fightingdeveloper.tistory.com/7 
+3. Gradle 적용 => 블로그 정리
+   3-1) 자바 프로젝트에 Gradle 적용 https://fightingdeveloper.tistory.com/8
