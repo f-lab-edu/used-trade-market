@@ -5,5 +5,6 @@
    https://fightingdeveloper.tistory.com/7 
 3. Gradle 적용 => 블로그 정리<br>
    3-1) 자바 프로젝트에 Gradle 적용 <br>
-   https://fightingdeveloper.tistory.com/8
-    
+   https://fightingdeveloper.tistory.com/8 <br>
+   3-2) Gradle 개념 정리 <br>
+   https://fightingdeveloper.tistory.com/9
