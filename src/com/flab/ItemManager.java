@@ -6,7 +6,14 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TransactionService {
+/** 
+ * 상품 관리 기능 클래스
+ * 
+ * @author 배영현
+ * @version 1.0
+ *
+ * */
+public class ItemManager {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
@@ -14,7 +21,7 @@ public class TransactionService {
      * <code>member</code>가 <code>null</code>인 경우에는 NullPointException을 반환한다.
      * @param member 회원 정보
      * */
-    public List<Item> recommendList(Member member) {
+    public List<Item> showRecommendItemList(Member member) {
 
         logger.info("-------------------------");
         logger.info("Item recommendList");
@@ -32,27 +39,12 @@ public class TransactionService {
      * @param item 상품 카테고리 체크를 위해
      * @return ArrayList<Item>
      * */
-    public List<Item> viewItemList(Item item) {
+    public List<Item> showItemList(Item item) {
         logger.info("-------------------------");
         logger.info("Item viewItemList");
         logger.debug("parameter Item(category) : " + item);
         logger.info("return List");
         logger.info("-------------------------");
         return new ArrayList<Item>();
-    }
-
-    /**
-     * 회원만 사용할 수 있도록 체크하는 메서드
-     * 회원 정보가 <code>member</code>인 객체를 확인하고 정보가 없으면 false를 반환하고 정보가 있으면 true를 반환한다.
-     * @param member
-     * @return result
-     * */
-    public boolean isRegistered(Member member) {
-        boolean result = true;
-        logger.info("-------------------------");
-        logger.info("isRegistered Method");
-        logger.debug("parameter : " + member);
-        logger.info("-------------------------");
-        return result;
     }
 }

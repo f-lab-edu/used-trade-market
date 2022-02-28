@@ -16,32 +16,33 @@ public class Prototype {
         Item item = new Item();
         Seller seller = new Seller();
         Buyer buyer = new Buyer();
-        TransactionService transactionService = new TransactionService();
+        ItemManager itemManager = new ItemManager();
+        MemberManager memberManager = new MemberManager();
 
         /**
          * 기본기능
          * */
         // 회원가입
-        member.join(member);
+        memberManager.registerMember(member);
 
         //추천 리스트 보여주기
-        List<Item> recommendList = transactionService.recommendList(member);
+        List<Item> recommendList = itemManager.showRecommendItemList(member);
 
         // 상품 리스트 보여주기
-        List<Item> normalList = transactionService.viewItemList(item);
+        List<Item> normalList = itemManager.showItemList(item);
 
         /**
          * 회원인지 아닌지 체크 후 회원이 아니면 로그인 메소드를 타도록 함.
          * */
-        if(!transactionService.isRegistered(member)) {
-            member.goLogin();
+        if(!memberManager.isRegistered(member)) {
+            memberManager.goLogin();
         }
 
         /**
          * 판매자
          * */
         // 판매자 등록
-        seller.register(item);
+        seller.registerItem(item);
 
         /**
          * 구매자
