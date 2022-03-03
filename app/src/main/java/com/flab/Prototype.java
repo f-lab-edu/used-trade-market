@@ -1,13 +1,10 @@
 package com.flab;
 
-import org.apache.log4j.BasicConfigurator;
-
 import java.util.List;
 import java.util.function.Function;
 
 public class Prototype {
     public static void main(String[] args) {
-        BasicConfigurator.configure();
 
         /** 
          * 임시 객체
