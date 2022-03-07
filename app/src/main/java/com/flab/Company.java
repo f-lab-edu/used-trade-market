@@ -18,7 +18,7 @@ public class Company {
      * @param itemNo 상품 번호
      * @return result 정상 지급 Y/N
      * */
-    protected boolean sendMoneyCompanyToSeller(String itemNo) {
+    protected boolean sendMoneyCompanyToSeller(Long itemNo) {
         boolean result = false;
         logger.info("----------------------");
         logger.info("sendMoneyCompanyToSeller method");
@@ -33,7 +33,7 @@ public class Company {
      * @param itemNo 상품 번호
      * @return result  정상 환급 Y/N
      * */
-    protected boolean sendMoneyCompanyToBuyer(String itemNo) {
+    protected boolean sendMoneyCompanyToBuyer(Long itemNo) {
         boolean result = false;
         logger.info("----------------------");
         logger.info("sendMoneyCompanyToBuyer method");

@@ -49,7 +49,7 @@ public class Buyer {
      * @return 찜이 정상적으로 됐는지 안됐는지 boolean 타입
      *
      * */
-    protected boolean zzim(String itemNo) {
+    protected boolean zzim(Long itemNo) {
         boolean result = false;
         logger.info("----------------");
         logger.info("zzim method");
@@ -63,7 +63,7 @@ public class Buyer {
      * <code>itemNo</code>가 <code>null</code>인 경우에는 NullPointException을 반환한다.
      * @param itemNo 상품 번호
      * */
-    protected void sendMessage(String itemNo) {
+    protected void sendMessage(Long itemNo) {
         logger.info("-------------------");
         logger.info("sendMessage method");
         logger.debug("parameter itemNo : " + itemNo);
@@ -76,7 +76,7 @@ public class Buyer {
      * @param itemNo 상품번호
      * return result  구매가 정상적으로 일어났는지 boolean 타입으로 확인
      * */
-    protected boolean courierServiceBuy(String itemNo) {
+    protected boolean courierServiceBuy(Long itemNo) {
         boolean result = false;
         logger.info("----------------------");
 
@@ -101,7 +101,7 @@ public class Buyer {
      * @param itemNo 상품번호
      * return result  구매가 정상적으로 일어났는지 boolean 타입으로 확인
      * */
-    protected boolean directTransaction(String itemNo) {
+    protected boolean directTransaction(Long itemNo) {
         boolean result = false;
         logger.info("----------------------");
         logger.info("directTransaction method");
@@ -127,7 +127,7 @@ public class Buyer {
      * @param itemNo 상품번호
      * @return result 구매확정 Y/N
      * */
-    protected boolean purchaseConfirmation(String itemNo) {
+    protected boolean purchaseConfirmation(Long itemNo) {
         boolean result = false;
         logger.info("----------------------");
         logger.info("purchaseConfirmation method");
@@ -145,7 +145,7 @@ public class Buyer {
      * @param itemNo 상품번호
      * @return result 비용 정상 지급 Y/N
      * */
-    protected boolean sendMoneyBuyerToCompany(String itemNo) {
+    protected boolean sendMoneyBuyerToCompany(Long itemNo) {
         boolean result = false;
         logger.info("----------------------");
         logger.info("sendMoneyBuyerToCompany method");
@@ -160,7 +160,7 @@ public class Buyer {
      * @param itemNo 상품번호
      * @return 포인트 정상 지급 Y/N
      * */
-    protected boolean addPoint(String itemNo) {
+    protected boolean addPoint(Long itemNo) {
         boolean result = false;
         logger.info("----------------------");
         logger.info("addPoint Method");
@@ -175,7 +175,7 @@ public class Buyer {
      * @param itemNo 상품번호
      * @return result 정상배송 Y/N
      * */
-    protected boolean delivery(String itemNo) {
+    protected boolean delivery(Long itemNo) {
         boolean result = false;
         return result;
     }
@@ -186,7 +186,7 @@ public class Buyer {
      * @param itemNo 상품번호
      * @return result  자동 구매확정 Y/N
      * */
-    protected boolean autopurchaseConfirmation(String itemNo) {
+    protected boolean autopurchaseConfirmation(Long itemNo) {
         boolean result=  true;
         logger.info("----------------------");
         logger.info("autopurchaseConfirmation method");
@@ -200,12 +200,12 @@ public class Buyer {
      * <code>itemNo</code>가 <code>null</code>인 경우에는 NullPointException을 반환한다.
      * @param itemNo 상품번호
      * */
-    protected Item selectItem(String itemNo) {
+    protected Item selectItem(Long itemNo) {
         logger.info("-------------------");
         logger.info("selectItem method");
         logger.debug("parameter itemNo : " + itemNo);
         logger.info("-------------------");
-        return new Item(itemNo);
+        return new Item();
     }
 
     /**
