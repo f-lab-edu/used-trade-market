@@ -31,7 +31,7 @@ public class MemberRepository {
      * <code>member</code>인 회원을 회원 저장소 <code>memberList</code>에 저장한다.
      * <code>key</code>는 회원 번호를 나타내며 <code>key</code>는 1씩 증가해서 저장될 수 있도록 한다.
      * */
-    protected boolean addMember(@Nullable Member member) {
+    protected boolean registerMember(@Nullable Member member) {
         boolean result = false;
 
         member.setMemberNo(++key);
@@ -47,11 +47,11 @@ public class MemberRepository {
     /**
      * 입력한 <code>memberId</code>를 토대로 회원 정보를 갖고 오는 메서드
      * */
-    protected Member searchMember(Long key) {
+    protected Member getMemberSelectOne(@Nullable Long key) {
         return memberList.get(key);
     }
 
-    protected Map<Long, Member> getMember() {
+    protected Map<Long, Member> getAllMember() {
         return memberList;
     }
 

@@ -15,6 +15,8 @@ public class MemberManager {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private MemberRepository memberRepository = new MemberRepository();
+
     /**
      * 회원 정보인 <code>member</code>를 통해 회원이 서비스를 이용할 수 있도록 가입을 할 수 있도록 한다.
      * 정상적으로 회원 가입이 된 경우 <code>true</code>를 반환한다.
@@ -23,6 +25,9 @@ public class MemberManager {
      * */
     public boolean registerMember(@Nullable Member member) {
         boolean result = false;
+        if(memberRepository.registerMember(member)) {
+            result = true;
+        }
 
         logger.info("-------------------------");
         logger.info("Member join method");
