@@ -3,6 +3,7 @@ package com.flab;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +17,14 @@ import java.util.List;
 public class ItemManager {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private ItemRepository itemRepository = new ItemRepository();
     /**
      * 회원 정보가 <code>member</code>인 사용자를 통해 추천 상품 리스트를 나열해 보여준다.
      * <code>member</code>가 <code>null</code>인 경우에는 NullPointException을 반환한다.
      * @param member 회원 정보
      * */
-    public List<Item> showRecommendItemList(Member member) {
+    protected List<Item> showRecommendItemList(Member member) {
 
         logger.info("-------------------------");
         logger.info("Item recommendList");
@@ -39,7 +42,7 @@ public class ItemManager {
      * @param item 상품 카테고리 체크를 위해
      * @return ArrayList<Item>
      * */
-    public List<Item> showItemList(Item item) {
+    protected List<Item> showItemList(Item item) {
         logger.info("-------------------------");
         logger.info("Item viewItemList");
         logger.debug("parameter Item(category) : " + item);
@@ -47,4 +50,24 @@ public class ItemManager {
         logger.info("-------------------------");
         return new ArrayList<Item>();
     }
+
+    /**
+     * <code>item</code>인 상품을 등록하는 메소드
+     * @param item 상품정보
+     * @return result  정상 등록 여부 Y/N
+     * */
+    public boolean registerItem(@Nullable Item item, @Nullable Long MemberId) {
+        boolean result = false;
+        itemRepository.registerItem(item, MemberId);
+
+
+        logger.info("-----------------");
+        logger.info("register method");
+        logger.debug("parameter item" + item.toString());
+        logger.info("-----------------");
+
+        return result;
+    }
+
+
 }
