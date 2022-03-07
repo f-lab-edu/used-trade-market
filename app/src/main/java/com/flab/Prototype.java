@@ -22,6 +22,11 @@ public class Prototype {
         // 회원가입
         memberManager.registerMember(member);
 
+        /**
+         * 판매자
+         * */
+        itemManager.registerItem(item, member.getMemberNo());
+
         //추천 리스트 보여주기
         List<Item> recommendList = itemManager.showRecommendItemList(member);
 
@@ -35,23 +40,18 @@ public class Prototype {
             memberManager.goLogin();
         }
 
-        /**
-         * 판매자
-         * */
-        // 판매자 등록
-        seller.registerItem(item);
 
         /**
          * 구매자
          * */
         // 상품 선택
-        Item selectItem = buyer.selectItem(item.itemNo);
+        Item selectItem = buyer.selectItem(item.getItemNo());
 
         // 찜하기
-        buyer.zzim(selectItem.itemNo);
+        buyer.zzim(selectItem.getItemNo());
 
         // 연락하기
-        buyer.sendMessage(selectItem.itemNo);
+        buyer.sendMessage(selectItem.getItemNo());
 
         /**
          * 구매자가 거래방법 체크하는 메소드 추가
@@ -65,7 +65,7 @@ public class Prototype {
         boolean checkIsDirectTransaction = buyer.isDirectTransaction(selectDealTypeCode);
 
         // if문 제거 람다식으로 변환
-        Function<Boolean, Boolean> isDirectTransaction = check -> true ? buyer.directTransaction(selectItem.itemNo) : buyer.courierServiceBuy(selectItem.itemNo);
+        Function<Boolean, Boolean> isDirectTransaction = check -> true ? buyer.directTransaction(selectItem.getItemNo()) : buyer.courierServiceBuy(selectItem.getItemNo());
         isDirectTransaction.apply(checkIsDirectTransaction);
 
     }
