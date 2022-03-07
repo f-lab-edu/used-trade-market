@@ -3,9 +3,11 @@ package com.flab;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /** 
  * 상품 관리 기능 클래스
@@ -26,6 +28,10 @@ public class ItemManager {
      * */
     protected List<Item> showRecommendItemList(Member member) {
 
+        if(member == null) {
+            throw new NullPointerException();
+        }
+
         logger.info("-------------------------");
         logger.info("Item recommendList");
         logger.debug("parameter member : " + member);
@@ -43,6 +49,11 @@ public class ItemManager {
      * @return ArrayList<Item>
      * */
     protected List<Item> showItemList(Item item) {
+
+        if(item == null) {
+            throw new NullPointerException();
+        }
+
         logger.info("-------------------------");
         logger.info("Item viewItemList");
         logger.debug("parameter Item(category) : " + item);
@@ -56,10 +67,18 @@ public class ItemManager {
      * @param item 상품정보
      * @return result  정상 등록 여부 Y/N
      * */
-    public boolean registerItem(@Nullable Item item, @Nullable Long MemberId) {
+    public boolean registerItem(@Nullable Item item, @Nullable Long memberId) {
         boolean result = false;
-        itemRepository.registerItem(item, MemberId);
 
+        if(item == null) {
+            throw new NullPointerException();
+        }
+
+        if(memberId == null) {
+            throw new NullPointerException();
+        }
+
+        itemRepository.registerItem(item, memberId);
 
         logger.info("-----------------");
         logger.info("register method");
