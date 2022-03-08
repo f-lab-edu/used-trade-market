@@ -27,13 +27,13 @@ public class ItemManager {
      * @param member 회원 정보
      * */
     protected List<Item> showRecommendItemList(Member member) {
-
         if(member == null) {
             throw new NullPointerException();
         }
 
         logger.info("-------------------------");
         logger.info("Item recommendList");
+
         logger.debug("parameter member : " + member);
         logger.info("return List");
         logger.info("-------------------------");
@@ -53,13 +53,12 @@ public class ItemManager {
         if(item == null) {
             throw new NullPointerException();
         }
-
         logger.info("-------------------------");
         logger.info("Item viewItemList");
         logger.debug("parameter Item(category) : " + item);
         logger.info("return List");
         logger.info("-------------------------");
-        return new ArrayList<Item>();
+        return itemRepository.showItemList(item);
     }
 
     /**

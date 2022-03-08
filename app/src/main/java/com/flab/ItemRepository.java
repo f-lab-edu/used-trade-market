@@ -3,7 +3,9 @@ package com.flab;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,5 +54,33 @@ public class ItemRepository {
      * */
     protected Map<Long, Item> getAllItem() {
         return itemList;
+    }
+
+    /**
+     * 추천 상품 목록 미구현..
+     * */
+    protected List<Item> showRecommendItemList(Member member) {
+        return new ArrayList<Item>();
+    }
+
+    /**
+     * <code>item</code>인 상품 객체의 <code>bigCategory</code> 대분류, <code>middleCategory</code> 중분류, <code>smallCaterogy</code> 소분류를
+     * 통해 기존 <code>itemList</code>에서 각각의 카테고리에 해당 하는 상품 객체만 List인 <code>categoryItemList</code>에 저장하여 반환한다.
+     * */
+    protected List<Item> showItemList(Item item) {
+        logger.info("----- ItemRepository showItemList -----");
+
+        List<Item> categoryItemList = new ArrayList<>();
+        int bigCategory = item.getBigCategoryNo();
+        int middleCategory = item.getMiddleCategoryNo();
+        int smallCategory = item.getSmallCategoryNo();
+
+        for(int i = 1; i < itemList.size(); i++) {
+            if(itemList.get(i).getBigCategoryNo() == bigCategory && itemList.get(i).getMiddleCategoryNo() == middleCategory
+                    && itemList.get(i).getSmallCategoryNo() == smallCategory) {
+                categoryItemList.add(itemList.get(i));
+            }
+        }
+        return categoryItemList;
     }
 }
