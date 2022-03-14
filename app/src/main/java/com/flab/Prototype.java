@@ -15,6 +15,8 @@ public class Prototype {
         Buyer buyer = new Buyer();
         ItemManager itemManager = new ItemManager();
         MemberManager memberManager = new MemberManager();
+        ZzimManager zzimManager = new ZzimManager();
+        TransactionManager transactionManager = new TransactionManager();
 
         /**
          * 기본기능
@@ -45,10 +47,10 @@ public class Prototype {
          * 구매자
          * */
         // 상품 선택
-        Item selectItem = buyer.selectItem(item.getItemNo());
+        Item selectItem = itemManager.getItem(item.getItemNo());
 
         // 찜하기
-        buyer.zzim(selectItem.getItemNo());
+        zzimManager.zzim(selectItem.getItemNo(), member.getMemberNo());
 
         // 연락하기
         buyer.sendMessage(selectItem.getItemNo());
@@ -62,10 +64,11 @@ public class Prototype {
         /**
          * isDirectTransaction()을 통해 택배배송인지 직거래인지 체크해서 true 직거래 그렇지 않으면 택배거래를 하도록 함
          * */
-        boolean checkIsDirectTransaction = buyer.isDirectTransaction(selectDealTypeCode);
+        boolean checkIsDirectTransaction = transactionManager.isDirectTransaction(selectDealTypeCode);
 
         // if문 제거 람다식으로 변환
-        Function<Boolean, Boolean> isDirectTransaction = check -> true ? buyer.directTransaction(selectItem.getItemNo()) : buyer.courierServiceBuy(selectItem.getItemNo());
+        Function<Boolean, Boolean> isDirectTransaction = check -> true ? transactionManager.directTransaction(selectItem.getItemNo(), member.getMemberNo())
+                : transactionManager.courierServiceBuy(selectItem.getItemNo(), member.getMemberNo());
         isDirectTransaction.apply(checkIsDirectTransaction);
 
     }
