@@ -3,6 +3,7 @@ package com.flab;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -23,17 +24,18 @@ public class MemberManager {
      * @param member 회원 정보 입력
      * @return result 회원 가입 정상 Y/N
      * */
-    public boolean registerMember(@Nullable Member member) {
+    public boolean registerMember(@Nonnull Member member) {
+        if(member == null) {
+            throw new NullPointerException();
+        }
+        logger.info("Member register method");
+        logger.debug("parameter : " + member);
+
         boolean result = false;
         if(memberRepository.registerMember(member)) {
             result = true;
         }
-
-        logger.info("-------------------------");
-        logger.info("Member join method");
-        logger.debug("parameter : " + member);
-        logger.info("-------------------------");
-
+        logger.info("success register member");
         return result;
     }
 
@@ -44,11 +46,13 @@ public class MemberManager {
      * @return result
      * */
     public boolean isRegistered(@Nullable Member member) {
-        boolean result = true;
-        logger.info("-------------------------");
         logger.info("isRegistered Method");
-        logger.debug("parameter : " + member);
-        logger.info("-------------------------");
+        boolean result = true;
+
+        if(member.getMemberId() == null || member.getMemberId().equals("")) {
+            result = false;
+        }
+
         return result;
     }
 
@@ -59,6 +63,29 @@ public class MemberManager {
         logger.info("-------------------------");
         logger.info("Go login");
         logger.info("-------------------------");
+    }
+
+    /**
+     * <code>memberNo</code>인 회원 정보를 갖는 회원을 회원 객체를 저장하는 <code>memberRepository</code>에서 갖고 오는 메소드
+     * */
+    public Member getMemberSelectOne(@Nonnull Long memberNo) {
+        if(memberNo == null) {
+            throw new NullPointerException();
+        }
+        return memberRepository.getMemberSelectOne(memberNo);
+    }
+
+    /**
+     * <code>memberNo</code>의 회원번호와 <code>memberInfo</code>인 회원 정보를 갖는 회원의 정보를
+     * <code>memberList</code>라는 회원 저장 map에 변경 내용을 저장하는 메소드
+     * @param memberNo  회원번호
+     * @param memberInfo    회원 정보
+     * */
+    protected void updateMemberInfo(@Nonnull Long memberNo, @Nonnull Member memberInfo) {
+        if(memberNo == null || memberInfo == null) {
+            throw new NullPointerException();
+        }
+        memberRepository.updateMemberInfo(memberNo, memberInfo);
     }
 
 }

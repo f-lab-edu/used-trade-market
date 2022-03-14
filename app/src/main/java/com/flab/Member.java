@@ -19,6 +19,11 @@ public class Member {
     /**
      * 회원 번호
      * */
+    private Long memberNo;
+
+    /**
+     * 회원 아이디
+     * */
     private String memberId;
 
     /**
@@ -36,10 +41,72 @@ public class Member {
      * */
     private String memberType;
 
+    /**
+     * 포인트
+     * */
+    private int point;
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
+
+    public Long getMemberNo() {
+        return memberNo;
+    }
+
+    public void setMemberNo(Long memberNo) {
+        this.memberNo = memberNo;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public String getMemberPassword() {
+        return memberPassword;
+    }
+
+    public void setMemberPassword(String memberPassword) {
+        this.memberPassword = memberPassword;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public String getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
-                "memberId='" + memberId + '\'' +
+                "memberNo=" + memberNo +
+                ", memberId='" + memberId + '\'' +
                 ", memberPassword='" + memberPassword + '\'' +
                 ", memberName='" + memberName + '\'' +
                 ", memberType='" + memberType + '\'' +
