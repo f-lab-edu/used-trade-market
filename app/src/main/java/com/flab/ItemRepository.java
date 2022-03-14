@@ -3,6 +3,7 @@ package com.flab;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,10 +36,14 @@ public class ItemRepository {
     protected void registerItem(Item item, Long memberNo) {
         item.setItemNo(++key);
         item.setMemberNo(memberNo);
+        item.setTransactionYN(true);
         itemList.put(key, item);
-        logger.info(key + "add Member");
+
+        logger.info(key + "register item");
+
         itemList.put(key, item);
-        logger.info("add Item info");
+
+        logger.info("register Item info");
         logger.info(itemList.get(key).toString());
     }
 
@@ -46,6 +51,7 @@ public class ItemRepository {
      * <code>itemList</code>에서 상품 번호가 <code>itemNo</code>을 key 값으로 갖는 상품 객체를 반환한다.
      * */
     protected Item getItemSelectOne(Long itemNo) {
+        logger.debug(itemList.get(itemNo).toString());
         return  itemList.get(itemNo);
     }
 
@@ -82,5 +88,14 @@ public class ItemRepository {
             }
         }
         return categoryItemList;
+    }
+
+    /**
+     * <code>item</code>인 상품에 관련된 변경 내용이 있을 경우 해당 메소드를 통해 상품 저장소인 <code>itemList</code>에 저장한다.
+     * @param item
+     * */
+    protected void updateItemInfo(@Nonnull Long itemNo, @Nonnull Item item) {
+        logger.debug("itemNo : "+itemNo + "itemInfo"+ item.toString());
+        itemList.put(itemNo, item);
     }
 }

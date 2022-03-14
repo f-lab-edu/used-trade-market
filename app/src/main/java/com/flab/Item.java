@@ -76,6 +76,26 @@ public class Item {
      * */
     private int itemNum;
 
+    /**
+     * 구매자 -> 중개자 비용 지불 YN
+     * */
+    private boolean sendMoneySellerToCompany;
+
+    /**
+     * 중개자 -> 판매자 비용 지불 YN
+     * */
+    private boolean sendMoneyCompanyToBuyer;
+
+    /**
+     * 거래 가능 YN
+     * */
+    private boolean transactionYN;
+
+    /**
+     * 구매확정 YN
+     * */
+    private boolean purchaseConfirmationYN;
+
     public Item() {}
 
     public Long getItemNo() {
@@ -188,5 +208,37 @@ public class Item {
 
     public void setItemNum(int itemNum) {
         this.itemNum = itemNum;
+    }
+
+    public boolean isSendMoneySellerToCompany() {
+        return sendMoneySellerToCompany;
+    }
+
+    public void setSendMoneySellerToCompany(boolean sendMoneySellerToCompany) {
+        this.sendMoneySellerToCompany = sendMoneySellerToCompany;
+    }
+
+    public boolean isSendMoneyCompanyToBuyer() {
+        return sendMoneyCompanyToBuyer;
+    }
+
+    public void setSendMoneyCompanyToBuyer(boolean sendMoneyCompanyToBuyer) {
+        this.sendMoneyCompanyToBuyer = sendMoneyCompanyToBuyer;
+    }
+
+    public boolean isTransactionYN() {
+        return transactionYN;
+    }
+
+    public void setTransactionYN(boolean transactionYN) {
+        this.transactionYN = transactionYN;
+    }
+
+    public boolean isPurchaseConfirmationYN() {
+        return purchaseConfirmationYN;
+    }
+
+    public void setPurchaseConfirmationYN(boolean purchaseConfirmationYN) {
+        this.purchaseConfirmationYN = purchaseConfirmationYN;
     }
 }
