@@ -22,6 +22,29 @@ public class ItemManager {
 
     private ItemRepository itemRepository = new ItemRepository();
     /**
+     * <code>item</code>인 상품을 등록하는 메소드로 정상적으로 상품이 등록 되었을 경우 true를 반환한다.
+     * @param item 상품정보
+     * @return result  정상 등록 여부 Y/N
+     * */
+    protected boolean registerItem(@Nullable Item item, @Nullable Long memberNo) {
+        logger.info("register method");
+
+        boolean result = false;
+
+        if(item == null || memberNo == null) {
+            throw new NullPointerException();
+        }
+
+        itemRepository.registerItem(item, memberNo);
+
+        result = true;
+
+        logger.info("success item register");
+
+        return result;
+    }
+
+    /**
      * 회원 정보가 <code>member</code>인 사용자를 통해 추천 상품 리스트를 나열해 보여준다.
      * @param member 회원 정보
      * */
@@ -57,28 +80,6 @@ public class ItemManager {
         return itemRepository.showItemList(item);
     }
 
-    /**
-     * <code>item</code>인 상품을 등록하는 메소드로 정상적으로 상품이 등록 되었을 경우 true를 반환한다.
-     * @param item 상품정보
-     * @return result  정상 등록 여부 Y/N
-     * */
-    protected boolean registerItem(@Nullable Item item, @Nullable Long memberNo) {
-        logger.info("register method");
-
-        boolean result = false;
-
-        if(item == null || memberNo == null) {
-            throw new NullPointerException();
-        }
-
-        itemRepository.registerItem(item, memberNo);
-
-        result = true;
-
-        logger.info("success item register");
-
-        return result;
-    }
     /**
      * <code>itemNo</code>을 갖고 있는 Item 객체를 ItemRepository에서 가지고 오는 메소드
      * @param itemNo 상품 번호

@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author 배영현
@@ -40,8 +37,6 @@ public class ItemRepository {
         itemList.put(key, item);
 
         logger.info(key + "register item");
-
-        itemList.put(key, item);
 
         logger.info("register Item info");
         logger.info(itemList.get(key).toString());
@@ -81,10 +76,13 @@ public class ItemRepository {
         int middleCategory = item.getMiddleCategoryNo();
         int smallCategory = item.getSmallCategoryNo();
 
-        for(int i = 1; i < itemList.size(); i++) {
-            if(itemList.get(i).getBigCategoryNo() == bigCategory && itemList.get(i).getMiddleCategoryNo() == middleCategory
-                    && itemList.get(i).getSmallCategoryNo() == smallCategory) {
-                categoryItemList.add(itemList.get(i));
+        Iterator<Long> iter = itemList.keySet().iterator();
+
+        while(iter.hasNext()) {
+            Long key = iter.next();
+            if(itemList.get(key).getBigCategoryNo() == bigCategory && itemList.get(key).getMiddleCategoryNo() == middleCategory
+                    && itemList.get(key).getSmallCategoryNo() == smallCategory) {
+                categoryItemList.add(itemList.get(key));
             }
         }
         return categoryItemList;

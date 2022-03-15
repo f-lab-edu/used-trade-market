@@ -29,11 +29,12 @@ public class ItemRepositoryTest {
         item.setItemNum(1);
 
         // when 함수를 실행하면
-        itemManager.registerItem(item, 1L);
+        itemManager.registerItem(null, 1L);
 
         Item result = itemRepository.getItemSelectOne(item.getItemNo());
 
         // then 이런 결과가 나와야한다.
         assertThat(item).isEqualTo(result);
     }
+
 }
