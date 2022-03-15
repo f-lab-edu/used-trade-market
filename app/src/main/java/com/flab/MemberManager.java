@@ -49,7 +49,7 @@ public class MemberManager {
         logger.info("isRegistered Method");
         boolean result = true;
 
-        if(member.getMemberId() == null || member.getMemberId().equals("")) {
+        if(member.getMemberNo() == null) {
             result = false;
         }
 
