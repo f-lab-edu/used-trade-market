@@ -18,7 +18,7 @@ public class PointManager {
      * */
     protected boolean addPoint(Long itemNo, Long memberNo) {
         logger.info("addPoint Method");
-        logger.debug("parameter itemNo : " + itemNo);
+        logger.debug("parameter itemNo : {}", itemNo);
 
         boolean result = false;
         Member memberInfo = memberManager.getMemberSelectOne(memberNo);

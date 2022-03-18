@@ -31,10 +31,8 @@ public class TransactionManager {
         if(selectDealTypeCode == 1) {
             result = true;
         }
-        logger.info("----------------------");
         logger.info("isDirectTransaction method");
-        logger.debug("parameter dealType : " + selectDealTypeCode);
-        logger.info("----------------------");
+        logger.debug("parameter dealType : {}", selectDealTypeCode);
         return result;
     }
     /**
@@ -45,9 +43,8 @@ public class TransactionManager {
      * */
     protected boolean directTransaction(@Nonnull Long itemNo, @Nonnull Long memberNo) {
         boolean result = false;
-        logger.info("----------------------");
         logger.info("directTransaction method");
-        logger.debug("parameter itemNo : " + itemNo);
+        logger.debug("parameter itemNo : {}", itemNo);
         transactionManager.sendMoneyBuyerToCompany(itemNo);
 
         if(transactionManager.purchaseConfirmation(itemNo, memberNo)) {
@@ -57,7 +54,6 @@ public class TransactionManager {
             transactionManager.sendMoneyCompanyToBuyer(itemNo, memberNo);
         }
         result = true;
-        logger.info("----------------------");
         return result;
     }
 
@@ -72,7 +68,6 @@ public class TransactionManager {
             throw new NullPointerException();
         }
         boolean result = false;
-        logger.info("----------------------");
 
         sendMoneyBuyerToCompany(itemNo);
         transactionManager.delivery(itemNo, memberNo);
@@ -83,7 +78,6 @@ public class TransactionManager {
         } else {
             transactionManager.sendMoneyCompanyToBuyer(itemNo, memberNo);
         }
-        logger.info("----------------------");
         return result;
 
     }
@@ -95,7 +89,7 @@ public class TransactionManager {
      * */
     protected boolean sendMoneyBuyerToCompany(@Nonnull Long itemNo) {
         logger.info("sendMoneyBuyerToCompany method");
-        logger.debug("parameter itemNo : " + itemNo);
+        logger.debug("parameter itemNo : {}", itemNo);
 
         if(itemNo == null) {
             throw new NullPointerException();
@@ -124,7 +118,7 @@ public class TransactionManager {
             throw new NullPointerException();
         }
         logger.info("sendMoneyCompanyToSeller method");
-        logger.debug("parameter itemNo : " + itemNo);
+        logger.debug("parameter itemNo : {}", itemNo);
 
         boolean result = false;
 
@@ -150,7 +144,7 @@ public class TransactionManager {
         }
         boolean result = false;
         logger.info("sendMoneyCompanyToBuyer method");
-        logger.debug("parameter itemNo : " + itemNo);
+        logger.debug("parameter itemNo : {]", itemNo);
 
         Item item = itemManager.getItem(itemNo);
         item.setSendMoneyCompanyToBuyer(false);
@@ -175,7 +169,7 @@ public class TransactionManager {
         }
         boolean result = false;
         logger.info("purchaseConfirmation method");
-        logger.debug("parameter itemNo : " + itemNo);
+        logger.debug("parameter itemNo : {}", itemNo);
 
         Item item = itemManager.getItem(itemNo);
         item.setPurchaseConfirmationYN(true);

@@ -39,10 +39,9 @@ public class MemberRepository {
         boolean result = false;
 
         member.setMemberNo(++key);
-        logger.info(key + "add Member");
+        logger.info("add Member : {}", key);
         memberList.put(key, member);
-        logger.info("add member info");
-        logger.info(memberList.get(key).toString());
+        logger.info("add member info : {}", memberList.get(key));
         result = true;
 
         return result;

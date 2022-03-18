@@ -36,17 +36,16 @@ public class ItemRepository {
         item.setTransactionYN(true);
         itemList.put(key, item);
 
-        logger.info(key + "register item");
+        logger.info("register item", key);
 
-        logger.info("register Item info");
-        logger.info(itemList.get(key).toString());
+        logger.info("register Item info", itemList.get(key));
     }
 
     /**
      * <code>itemList</code>에서 상품 번호가 <code>itemNo</code>을 key 값으로 갖는 상품 객체를 반환한다.
      * */
     protected Item getItemSelectOne(Long itemNo) {
-        logger.debug(itemList.get(itemNo).toString());
+        logger.debug("itemInfo", itemList.get(itemNo));
         return  itemList.get(itemNo);
     }
 
@@ -93,7 +92,7 @@ public class ItemRepository {
      * @param item
      * */
     protected void updateItemInfo(@Nonnull Long itemNo, @Nonnull Item item) {
-        logger.debug("itemNo : "+itemNo + "itemInfo"+ item.toString());
+        logger.debug("itemNo : {}", itemNo , "itemInfo : {}" , item);
         itemList.put(itemNo, item);
     }
 }

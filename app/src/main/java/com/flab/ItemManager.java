@@ -86,7 +86,8 @@ public class ItemManager {
      * @return <code>itemNo</code>인 상품 객체
      * */
     protected Item getItem(@Nonnull  Long itemNo) {
-        logger.info("----- getItem -----");
+        logger.info("getItem Method");
+        logger.info("itemNo : {}", itemNo);
 
         if(itemNo == null) {
             throw new NullPointerException();

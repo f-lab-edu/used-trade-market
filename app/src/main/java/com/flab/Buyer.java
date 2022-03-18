@@ -48,10 +48,8 @@ public class Buyer {
      * */
     protected void sendMessage(Long itemNo) {
         System.out.println("연락하기 채팅방 미구현");
-        logger.info("-------------------");
         logger.info("sendMessage method");
-        logger.debug("parameter itemNo : " + itemNo);
-        logger.info("-------------------");
+        logger.debug("parameter itemNo : {}" , itemNo);
     }
 
     /**
@@ -62,10 +60,8 @@ public class Buyer {
      * */
     protected boolean autopurchaseConfirmation(Long itemNo) {
         boolean result=  true;
-        logger.info("----------------------");
         logger.info("autopurchaseConfirmation method");
-        logger.debug("parameter itemNo : " + itemNo);
-        logger.info("----------------------");
+        logger.debug("parameter itemNo : {}" , itemNo);
         return true;
     }
 
@@ -74,10 +70,8 @@ public class Buyer {
      * <code>dealType</code>이 <code>null</code>인 경우에는 NullPointException을 반환한다.
      * */
     protected String selectDealType(String dealType) {
-        logger.info("----------------------");
         logger.info("selectDealType method");
-        logger.debug("parameter dealType : " + dealType);
-        logger.info("----------------------");
+        logger.debug("parameter dealType : {}" , dealType);
         return dealType;
     }
 }

@@ -29,7 +29,7 @@ public class MemberManager {
             throw new NullPointerException();
         }
         logger.info("Member register method");
-        logger.debug("parameter : " + member);
+        logger.debug("parameter : " , member);
 
         boolean result = false;
         if(memberRepository.registerMember(member)) {
