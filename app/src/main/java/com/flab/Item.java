@@ -241,4 +241,28 @@ public class Item {
     public void setPurchaseConfirmationYN(boolean purchaseConfirmationYN) {
         this.purchaseConfirmationYN = purchaseConfirmationYN;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemNo=" + itemNo +
+                ", memberNo=" + memberNo +
+                ", imgNo='" + imgNo + '\'' +
+                ", title='" + title + '\'' +
+                ", bigCategoryNo=" + bigCategoryNo +
+                ", middleCategoryNo=" + middleCategoryNo +
+                ", smallCategoryNo=" + smallCategoryNo +
+                ", address='" + address + '\'' +
+                ", UsedYN=" + UsedYN +
+                ", exchangeYN=" + exchangeYN +
+                ", price=" + price +
+                ", remark='" + remark + '\'' +
+                ", tag='" + tag + '\'' +
+                ", itemNum=" + itemNum +
+                ", sendMoneySellerToCompany=" + sendMoneySellerToCompany +
+                ", sendMoneyCompanyToBuyer=" + sendMoneyCompanyToBuyer +
+                ", transactionYN=" + transactionYN +
+                ", purchaseConfirmationYN=" + purchaseConfirmationYN +
+                '}';
+    }
 }

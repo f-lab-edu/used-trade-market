@@ -21,7 +21,6 @@ public class ZzimManager {
      * 정상적으로 찜리스트에 추가된 경우에는 <code>true</code>를 반환한다. 이미 찜리스트에 있는 경우에는 중복되어 추가되지 않고 찜이 취소되며 <code>false</code>를 반환한다.
      * <code>itemNo</code>가 <code>null</code>인 경우에는 NullPointException을 반환한다.
      * @param itemNo 상품 번호
-     * @return 찜이 정상적으로 됐는지 안됐는지 boolean 타입
      *
      * */
     protected boolean zzim(Long itemNo, Long memberNo) {
@@ -41,7 +40,7 @@ public class ZzimManager {
             result = true;
         }
 
-        logger.debug("parameter itemNo : " + itemNo + "memberNo : " + memberNo);
+        logger.debug("parameter itemNo : {}", itemNo, "memberNo : {}", memberNo);
         logger.info("----------------");
         return result;
     }

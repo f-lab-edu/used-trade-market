@@ -20,23 +20,16 @@ public class MemberManager {
 
     /**
      * 회원 정보인 <code>member</code>를 통해 회원이 서비스를 이용할 수 있도록 가입을 할 수 있도록 한다.
-     * 정상적으로 회원 가입이 된 경우 <code>true</code>를 반환한다.
      * @param member 회원 정보 입력
-     * @return result 회원 가입 정상 Y/N
      * */
-    public boolean registerMember(@Nonnull Member member) {
+    public void registerMember(@Nonnull Member member) {
         if(member == null) {
             throw new NullPointerException();
         }
         logger.info("Member register method");
         logger.debug("parameter : " , member);
 
-        boolean result = false;
-        if(memberRepository.registerMember(member)) {
-            result = true;
-        }
         logger.info("success register member");
-        return result;
     }
 
     /**

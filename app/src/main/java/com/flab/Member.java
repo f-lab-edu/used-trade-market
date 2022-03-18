@@ -110,6 +110,7 @@ public class Member {
                 ", memberPassword='" + memberPassword + '\'' +
                 ", memberName='" + memberName + '\'' +
                 ", memberType='" + memberType + '\'' +
+                ", point=" + point +
                 '}';
     }
 }

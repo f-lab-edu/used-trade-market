@@ -136,13 +136,11 @@ public class TransactionManager {
      * 구매취소 후 구매자에게 돈을 환급하는 메소드로 <code>itemNo</code>인 상품의 금액을 찾아고 구매자의 정보를 찾은 후 구매자에게 돈을 환급한다
      * <code>itemNo</code>가 <code>null</code>인 경우 NullPointException을 반환한다.
      * @param itemNo 상품 번호
-     * @return result  정상 환급 Y/N
      * */
-    protected boolean sendMoneyCompanyToBuyer(@Nonnull Long itemNo, @Nonnull Long memberNo) {
+    protected void sendMoneyCompanyToBuyer(@Nonnull Long itemNo, @Nonnull Long memberNo) {
         if(itemNo == null || memberNo == null) {
             throw new NullPointerException();
         }
-        boolean result = false;
         logger.info("sendMoneyCompanyToBuyer method");
         logger.debug("parameter itemNo : {]", itemNo);
 
@@ -152,9 +150,6 @@ public class TransactionManager {
 
         itemManager.updateItemInfo(itemNo, item);
 
-        result = true;
-
-        return result;
     }
 
     /**

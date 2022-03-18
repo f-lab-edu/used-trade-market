@@ -24,9 +24,8 @@ public class ItemManager {
     /**
      * <code>item</code>인 상품을 등록하는 메소드로 정상적으로 상품이 등록 되었을 경우 true를 반환한다.
      * @param item 상품정보
-     * @return result  정상 등록 여부 Y/N
      * */
-    protected boolean registerItem(@Nullable Item item, @Nullable Long memberNo) {
+    protected void registerItem(@Nullable Item item, @Nullable Long memberNo) {
         logger.info("register method");
 
         boolean result = false;
@@ -37,11 +36,7 @@ public class ItemManager {
 
         itemRepository.registerItem(item, memberNo);
 
-        result = true;
-
         logger.info("success item register");
-
-        return result;
     }
 
     /**

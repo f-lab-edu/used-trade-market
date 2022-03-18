@@ -32,19 +32,15 @@ public class MemberRepository {
      * <code>member</code>인 회원을 회원 저장소 <code>memberList</code>에 저장한다.
      * <code>key</code>는 회원 번호를 나타내며 <code>key</code>는 1씩 증가해서 저장될 수 있도록 한다.
      * */
-    protected boolean registerMember(@Nullable Member member) {
+    protected void registerMember(@Nullable Member member) {
         if(member == null) {
             throw new NullPointerException();
         }
-        boolean result = false;
-
         member.setMemberNo(++key);
         logger.info("add Member : {}", key);
         memberList.put(key, member);
         logger.info("add member info : {}", memberList.get(key));
-        result = true;
 
-        return result;
     }
 
     /**

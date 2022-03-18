@@ -16,11 +16,10 @@ public class PointManager {
      * @param itemNo 상품번호
      * @return 포인트 정상 지급 Y/N
      * */
-    protected boolean addPoint(Long itemNo, Long memberNo) {
+    protected void addPoint(Long itemNo, Long memberNo) {
         logger.info("addPoint Method");
         logger.debug("parameter itemNo : {}", itemNo);
 
-        boolean result = false;
         Member memberInfo = memberManager.getMemberSelectOne(memberNo);
         Item item = itemManager.getItem(itemNo);
         double adaptPoint = item.getPrice() * pointAccumulate;
@@ -28,8 +27,6 @@ public class PointManager {
 
         memberManager.updateMemberInfo(memberNo, memberInfo);
 
-        result = true;
-
-        return result;
+        logger.info("success addPoint");
     }
 }
