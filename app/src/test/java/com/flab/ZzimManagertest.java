@@ -17,10 +17,12 @@ public class ZzimManagertest {
     private Member member2;
     private Member member3;
 
+    MemberManager memberManager = new MemberManager();
+    ItemManager itemManager = new ItemManager();
+
     @BeforeEach
     public void setUp() {
-        MemberManager memberManager = new MemberManager();
-        ItemManager itemManager = new ItemManager();
+
 
         Item registerItem = new Item();
         registerItem.setTitle("테스트 상품1");
@@ -64,17 +66,21 @@ public class ZzimManagertest {
     public void ZzimTest() {
         // given
 
-        // 찜 성공
+        // 찜 성공 상품에 대한 찜 count가 1 증가
         // when
         boolean result = zzimManager.zzim(item.getItemNo(), member.getMemberNo());
+        Item zzimItem = itemManager.getItem(item.getItemNo());
         // then
         assertThat(result).isEqualTo(true);
+        assertThat(1).isEqualTo(zzimItem.getZzimCount());
 
-        // 찜 실패
+
+        // 찜 취소 이미 찜이 있을 경우 찜 취소 상품에 대한 찜 count가 1 감소
         // when
         boolean result2 = zzimManager.zzim(item.getItemNo(), member.getMemberNo());
+        zzimItem = itemManager.getItem(item.getItemNo());
         // then
         assertThat(result2).isEqualTo(false);
-
+        assertThat(0).isEqualTo(zzimItem.getZzimCount());
     }
 }

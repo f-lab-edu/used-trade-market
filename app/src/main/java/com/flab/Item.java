@@ -96,6 +96,11 @@ public class Item {
      * */
     private boolean purchaseConfirmationYN;
 
+    /**
+     * 찜 갯수
+     * */
+    private int zzimCount;
+
     public Item() {}
 
     public Long getItemNo() {
@@ -240,6 +245,14 @@ public class Item {
 
     public void setPurchaseConfirmationYN(boolean purchaseConfirmationYN) {
         this.purchaseConfirmationYN = purchaseConfirmationYN;
+    }
+
+    public int getZzimCount() {
+        return zzimCount;
+    }
+
+    public void setZzimCount(int zzimCount) {
+        this.zzimCount = zzimCount;
     }
 
     @Override

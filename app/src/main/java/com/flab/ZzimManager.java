@@ -16,6 +16,8 @@ public class ZzimManager {
 
     private ZzimRepository zzimRepository = new ZzimRepository();
 
+    private ItemManager itemManager = new ItemManager();
+
     /**
      * 상품 번호가 <code>itemNo</code>인 상품을 찜 리스트에 추가한다.
      * 정상적으로 찜리스트에 추가된 경우에는 <code>true</code>를 반환한다. 이미 찜리스트에 있는 경우에는 중복되어 추가되지 않고 찜이 취소되며 <code>false</code>를 반환한다.
@@ -32,11 +34,23 @@ public class ZzimManager {
 
         if(!zzimRepository.checkZzimList(itemNo, memberNo)) {
             zzimRepository.removeZzimList(itemNo, memberNo);
+
+            Item zzimCountUpdateItem = itemManager.getItem(itemNo);
+            zzimCountUpdateItem.setZzimCount(zzimCountUpdateItem.getZzimCount()-1);
+
+            itemManager.updateItemInfo(itemNo, zzimCountUpdateItem);
+
         } else {
             Zzim newZzim = new Zzim();
             newZzim.setItemNo(itemNo);
             newZzim.setMemberNo(memberNo);
             zzimRepository.addZzimList(newZzim);
+
+            Item zzimCountUpdateItem = itemManager.getItem(itemNo);
+            zzimCountUpdateItem.setZzimCount(zzimCountUpdateItem.getZzimCount()+1);
+
+            itemManager.updateItemInfo(itemNo, zzimCountUpdateItem);
+
             result = true;
         }
 
