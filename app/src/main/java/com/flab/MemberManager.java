@@ -26,6 +26,7 @@ public class MemberManager {
         if(member == null) {
             throw new NullPointerException();
         }
+        memberRepository.registerMember(member);
         logger.info("Member register method");
         logger.debug("parameter : " , member);
 
