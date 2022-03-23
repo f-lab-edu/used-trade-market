@@ -14,8 +14,6 @@ public class TransactionManager {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    TransactionManager transactionManager = new TransactionManager();
-
     ItemManager itemManager = new ItemManager();
 
     PointManager pointManager = new PointManager();
@@ -42,6 +40,7 @@ public class TransactionManager {
      * return result  구매가 정상적으로 일어났는지 boolean 타입으로 확인
      * */
     protected boolean directTransaction(@Nonnull Long itemNo, @Nonnull Long memberNo) {
+        TransactionManager transactionManager = new TransactionManager();
         boolean result = false;
         logger.info("directTransaction method");
         logger.debug("parameter itemNo : {}", itemNo);
@@ -64,6 +63,7 @@ public class TransactionManager {
      * return result  구매가 정상적으로 일어났는지 boolean 타입으로 확인
      * */
     protected boolean courierServiceBuy(@Nonnull  Long itemNo, @Nonnull Long memberNo) {
+        TransactionManager transactionManager = new TransactionManager();
         if(itemNo == null || memberNo == null) {
             throw new NullPointerException();
         }
