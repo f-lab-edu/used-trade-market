@@ -9,6 +9,9 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'org.springframework.boot' version '2.6.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 repositories {
@@ -52,6 +55,10 @@ dependencies {
 
     // AssertJ 추가
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.22.0'
+
+    // spring boot 추가
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 application {
