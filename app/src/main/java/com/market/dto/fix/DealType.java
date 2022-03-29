@@ -1,4 +1,4 @@
-package com.flab;
+package com.market.dto.fix;
 /**
  * 거래 방법 종류 enum 클래스
  *

@@ -1,22 +1,23 @@
-package com.flab;
+package com.market.controller;
 
+import com.market.repository.ZzimRepository;
+import com.market.dto.ItemDTO;
+import com.market.dto.ZzimDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.function.Function;
 
 /**
  * @author 배영현
  * @version 1.0
  * 사용자가 상품에 대해 찜을 하는 행위를 관리하는 클래스
  * */
-public class ZzimManager {
+public class ZzimController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private ZzimRepository zzimRepository = new ZzimRepository();
 
-    private ItemManager itemManager = new ItemManager();
+    private ItemController itemController = new ItemController();
 
     /**
      * 상품 번호가 <code>itemNo</code>인 상품을 찜 리스트에 추가한다.
@@ -25,7 +26,7 @@ public class ZzimManager {
      * @param itemNo 상품 번호
      *
      * */
-    protected boolean zzim(Long itemNo, Long memberNo) {
+    public boolean zzim(Long itemNo, Long memberNo) {
         logger.info("----- zzim -----");
         boolean result = false;
         if(itemNo == null || memberNo == null) {
@@ -35,21 +36,21 @@ public class ZzimManager {
         if(!zzimRepository.checkZzimList(itemNo, memberNo)) {
             zzimRepository.removeZzimList(itemNo, memberNo);
 
-            Item zzimCountUpdateItem = itemManager.getItem(itemNo);
-            zzimCountUpdateItem.setZzimCount(zzimCountUpdateItem.getZzimCount()-1);
+            ItemDTO zzimCountUpdateItemDTO = itemController.getItem(itemNo);
+            zzimCountUpdateItemDTO.setZzimCount(zzimCountUpdateItemDTO.getZzimCount()-1);
 
-            itemManager.updateItemInfo(itemNo, zzimCountUpdateItem);
+            itemController.updateItemInfo(itemNo, zzimCountUpdateItemDTO);
 
         } else {
-            Zzim newZzim = new Zzim();
+            ZzimDTO newZzim = new ZzimDTO();
             newZzim.setItemNo(itemNo);
             newZzim.setMemberNo(memberNo);
             zzimRepository.addZzimList(newZzim);
 
-            Item zzimCountUpdateItem = itemManager.getItem(itemNo);
-            zzimCountUpdateItem.setZzimCount(zzimCountUpdateItem.getZzimCount()+1);
+            ItemDTO zzimCountUpdateItemDTO = itemController.getItem(itemNo);
+            zzimCountUpdateItemDTO.setZzimCount(zzimCountUpdateItemDTO.getZzimCount()+1);
 
-            itemManager.updateItemInfo(itemNo, zzimCountUpdateItem);
+            itemController.updateItemInfo(itemNo, zzimCountUpdateItemDTO);
 
             result = true;
         }

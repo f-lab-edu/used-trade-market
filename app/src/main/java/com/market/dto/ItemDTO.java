@@ -5,7 +5,7 @@ package com.market.dto;
  * @author 배영현
  * @version 1.0
  * */
-public class Item {
+public class ItemDTO {
     /**
      * 상품번호
      * */
@@ -101,7 +101,7 @@ public class Item {
      * */
     private int zzimCount;
 
-    public Item() {}
+    public ItemDTO() {}
 
     public Long getItemNo() {
         return itemNo;

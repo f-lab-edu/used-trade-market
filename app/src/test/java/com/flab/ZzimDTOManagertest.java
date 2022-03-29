@@ -1,66 +1,69 @@
 package com.flab;
 
-import com.market.dto.Item;
-import com.market.dto.Member;
+import com.market.controller.ItemController;
+import com.market.controller.MemberController;
+import com.market.controller.ZzimController;
+import com.market.dto.ItemDTO;
+import com.market.dto.MemberDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ZzimManagertest {
+public class ZzimDTOManagertest {
 
-    ZzimManager zzimManager = new ZzimManager();
+    ZzimController zzimController = new ZzimController();
 
-    private Item item;
-    private Item item2;
-    private Item item3;
+    private ItemDTO itemDTO;
+    private ItemDTO itemDTO2;
+    private ItemDTO itemDTO3;
 
-    private Member member;
-    private Member member2;
-    private Member member3;
+    private MemberDTO member;
+    private MemberDTO member2;
+    private MemberDTO member3;
 
-    MemberManager memberManager = new MemberManager();
-    ItemManager itemManager = new ItemManager();
+    MemberController memberController = new MemberController();
+    ItemController itemController = new ItemController();
 
     @BeforeEach
     public void setUp() {
 
 
-        Item registerItem = new Item();
-        registerItem.setTitle("테스트 상품1");
-        registerItem.setPrice(10000);
-        registerItem.setRemark("비고");
-        registerItem.setBigCategoryNo(1);
-        registerItem.setMiddleCategoryNo(1);
-        registerItem.setSmallCategoryNo(1);
+        ItemDTO registerItemDTO = new ItemDTO();
+        registerItemDTO.setTitle("테스트 상품1");
+        registerItemDTO.setPrice(10000);
+        registerItemDTO.setRemark("비고");
+        registerItemDTO.setBigCategoryNo(1);
+        registerItemDTO.setMiddleCategoryNo(1);
+        registerItemDTO.setSmallCategoryNo(1);
 
         // 회원 객체 미리 저장
-        Member registerMember = new Member();
+        MemberDTO registerMember = new MemberDTO();
         registerMember.setMemberId("test001");
         registerMember.setMemberPassword("password001");
         registerMember.setMemberName("홍길동");
 
-        Member registerMember2 = new Member();
+        MemberDTO registerMember2 = new MemberDTO();
         registerMember2.setMemberId("test002");
         registerMember2.setMemberPassword("password002");
         registerMember2.setMemberName("고길동");
 
-        Member registerMember3 = new Member();
+        MemberDTO registerMember3 = new MemberDTO();
         registerMember3.setMemberId("test003");
         registerMember3.setMemberPassword("password003");
         registerMember3.setMemberName("이순신");
 
-        memberManager.registerMember(registerMember);
-        memberManager.registerMember(registerMember2);
-        memberManager.registerMember(registerMember3);
+        memberController.registerMember(registerMember);
+        memberController.registerMember(registerMember2);
+        memberController.registerMember(registerMember3);
 
-        member = memberManager.getMemberSelectOne(registerMember.getMemberNo());
-        member2 = memberManager.getMemberSelectOne(registerMember2.getMemberNo());
-        member3 = memberManager.getMemberSelectOne(registerMember3.getMemberNo());
+        member = memberController.getMemberSelectOne(registerMember.getMemberNo());
+        member2 = memberController.getMemberSelectOne(registerMember2.getMemberNo());
+        member3 = memberController.getMemberSelectOne(registerMember3.getMemberNo());
 
-        itemManager.registerItem(registerItem, member.getMemberNo());
+        itemController.registerItem(registerItemDTO, member.getMemberNo());
 
-        item = itemManager.getItem(registerItem.getItemNo());
+        itemDTO = itemController.getItem(registerItemDTO.getItemNo());
 
     }
 
@@ -70,19 +73,19 @@ public class ZzimManagertest {
 
         // 찜 성공 상품에 대한 찜 count가 1 증가
         // when
-        boolean result = zzimManager.zzim(item.getItemNo(), member.getMemberNo());
-        Item zzimItem = itemManager.getItem(item.getItemNo());
+        boolean result = zzimController.zzim(itemDTO.getItemNo(), member.getMemberNo());
+        ItemDTO zzimItemDTO = itemController.getItem(itemDTO.getItemNo());
         // then
         assertThat(result).isEqualTo(true);
-        assertThat(1).isEqualTo(zzimItem.getZzimCount());
+        assertThat(1).isEqualTo(zzimItemDTO.getZzimCount());
 
 
         // 찜 취소 이미 찜이 있을 경우 찜 취소 상품에 대한 찜 count가 1 감소
         // when
-        boolean result2 = zzimManager.zzim(item.getItemNo(), member.getMemberNo());
-        zzimItem = itemManager.getItem(item.getItemNo());
+        boolean result2 = zzimController.zzim(itemDTO.getItemNo(), member.getMemberNo());
+        zzimItemDTO = itemController.getItem(itemDTO.getItemNo());
         // then
         assertThat(result2).isEqualTo(false);
-        assertThat(0).isEqualTo(zzimItem.getZzimCount());
+        assertThat(0).isEqualTo(zzimItemDTO.getZzimCount());
     }
 }

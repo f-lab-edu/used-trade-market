@@ -3,7 +3,7 @@ package com.market.dto;
 /**
  * 찜 상태를 나타내는 클래스
  * */
-public class Zzim {
+public class ZzimDTO {
 
     /** 
      * 상품 번호

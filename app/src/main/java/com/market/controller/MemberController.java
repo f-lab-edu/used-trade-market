@@ -1,5 +1,7 @@
-package com.flab;
+package com.market.controller;
 
+import com.market.repository.MemberRepository;
+import com.market.dto.MemberDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +14,7 @@ import javax.annotation.Nullable;
  * @author 배영현
  * @version 1.0
  * */
-public class MemberManager {
+public class MemberController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -22,7 +24,7 @@ public class MemberManager {
      * 회원 정보인 <code>member</code>를 통해 회원이 서비스를 이용할 수 있도록 가입을 할 수 있도록 한다.
      * @param member 회원 정보 입력
      * */
-    public void registerMember(@Nonnull Member member) {
+    public void registerMember(@Nonnull MemberDTO member) {
         if(member == null) {
             throw new NullPointerException();
         }
@@ -39,7 +41,7 @@ public class MemberManager {
      * @param member
      * @return result
      * */
-    public boolean isRegistered(@Nullable Member member) {
+    public boolean isRegistered(@Nullable MemberDTO member) {
         logger.info("isRegistered Method");
         boolean result = true;
 
@@ -62,7 +64,7 @@ public class MemberManager {
     /**
      * <code>memberNo</code>인 회원 정보를 갖는 회원을 회원 객체를 저장하는 <code>memberRepository</code>에서 갖고 오는 메소드
      * */
-    public Member getMemberSelectOne(@Nonnull Long memberNo) {
+    public MemberDTO getMemberSelectOne(@Nonnull Long memberNo) {
         if(memberNo == null) {
             throw new NullPointerException();
         }
@@ -75,7 +77,7 @@ public class MemberManager {
      * @param memberNo  회원번호
      * @param memberInfo    회원 정보
      * */
-    protected void updateMemberInfo(@Nonnull Long memberNo, @Nonnull Member memberInfo) {
+    public void updateMemberInfo(@Nonnull Long memberNo, @Nonnull MemberDTO memberInfo) {
         if(memberNo == null || memberInfo == null) {
             throw new NullPointerException();
         }

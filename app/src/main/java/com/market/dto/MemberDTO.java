@@ -12,7 +12,7 @@ import java.util.List;
  * @author 배영현
  * @version 1.0
  * */
-public class Member {
+public class MemberDTO {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
