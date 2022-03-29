@@ -1,6 +1,7 @@
 package com.market.repository;
 
 import com.market.dto.MemberDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,9 +16,8 @@ import java.util.Map;
  *
  * 회원 정보를 저장하는 클래스
  * */
+@Slf4j
 public class MemberRepository {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 회원들을 저장할 HashMap
@@ -38,9 +38,9 @@ public class MemberRepository {
             throw new NullPointerException();
         }
         member.setMemberNo(++key);
-        logger.info("add Member : {}", key);
+        log.info("add Member : {}", key);
         memberList.put(key, member);
-        logger.info("add member info : {}", memberList.get(key));
+        log.info("add member info : {}", memberList.get(key));
 
     }
 

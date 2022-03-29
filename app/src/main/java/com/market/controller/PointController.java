@@ -2,11 +2,12 @@ package com.market.controller;
 
 import com.market.dto.ItemDTO;
 import com.market.dto.MemberDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Slf4j
 public class PointController {
-    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final double pointAccumulate = 0.01;
 
@@ -19,8 +20,8 @@ public class PointController {
      * @return 포인트 정상 지급 Y/N
      * */
     protected void addPoint(Long itemNo, Long memberNo) {
-        logger.info("addPoint Method");
-        logger.debug("parameter itemNo : {}", itemNo);
+        log.info("addPoint Method");
+        log.debug("parameter itemNo : {}", itemNo);
 
         MemberDTO memberInfo = memberController.getMemberSelectOne(memberNo);
         ItemDTO itemDTO = itemController.getItem(itemNo);
@@ -29,6 +30,6 @@ public class PointController {
 
         memberController.updateMemberInfo(memberNo, memberInfo);
 
-        logger.info("success addPoint");
+        log.info("success addPoint");
     }
 }

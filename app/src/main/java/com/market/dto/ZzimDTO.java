@@ -1,8 +1,12 @@
 package com.market.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 찜 상태를 나타내는 클래스
  * */
+@Getter @Setter
 public class ZzimDTO {
 
     /** 
@@ -15,19 +19,4 @@ public class ZzimDTO {
      * */
     private Long memberNo;
 
-    public Long getItemNo() {
-        return itemNo;
-    }
-
-    public void setItemNo(Long itemNo) {
-        this.itemNo = itemNo;
-    }
-
-    public Long getMemberNo() {
-        return memberNo;
-    }
-
-    public void setMemberNo(Long memberNo) {
-        this.memberNo = memberNo;
-    }
 }

@@ -2,6 +2,7 @@ package com.market.repository;
 
 import com.market.dto.ItemDTO;
 import com.market.dto.MemberDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,9 +15,8 @@ import java.util.*;
  *
  * 상품 정보를 저장하는 클래스
  * */
+@Slf4j
 public class ItemRepository {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 상품을 저장할 HashMap
@@ -38,16 +38,16 @@ public class ItemRepository {
         itemDTO.setTransactionYN(true);
         itemList.put(key, itemDTO);
 
-        logger.info("register item", key);
+        log.info("register item", key);
 
-        logger.info("register Item info", itemList.get(key));
+        log.info("register Item info", itemList.get(key));
     }
 
     /**
      * <code>itemList</code>에서 상품 번호가 <code>itemNo</code>을 key 값으로 갖는 상품 객체를 반환한다.
      * */
     public ItemDTO getItemSelectOne(Long itemNo) {
-        logger.debug("itemInfo", itemList.get(itemNo));
+        log.debug("itemInfo", itemList.get(itemNo));
         return  itemList.get(itemNo);
     }
 
@@ -70,7 +70,7 @@ public class ItemRepository {
      * 통해 기존 <code>itemList</code>에서 각각의 카테고리에 해당 하는 상품 객체만 List인 <code>categoryItemList</code>에 저장하여 반환한다.
      * */
     public List<ItemDTO> showItemList(ItemDTO itemDTO) {
-        logger.info("----- ItemRepository showItemList -----");
+        log.info("----- ItemRepository showItemList -----");
 
         List<ItemDTO> categoryItemDTOList = new ArrayList<>();
         int bigCategory = itemDTO.getBigCategoryNo();
@@ -94,7 +94,7 @@ public class ItemRepository {
      * @param itemDTO
      * */
     public void updateItemInfo(@Nonnull Long itemNo, @Nonnull ItemDTO itemDTO) {
-        logger.debug("itemNo : {}", itemNo , "itemInfo : {}" , itemDTO);
+        log.debug("itemNo : {}, itemInfo : {}", itemNo, itemDTO);
         itemList.put(itemNo, itemDTO);
     }
 }

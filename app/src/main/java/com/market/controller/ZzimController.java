@@ -3,6 +3,7 @@ package com.market.controller;
 import com.market.repository.ZzimRepository;
 import com.market.dto.ItemDTO;
 import com.market.dto.ZzimDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,9 +12,8 @@ import org.slf4j.LoggerFactory;
  * @version 1.0
  * 사용자가 상품에 대해 찜을 하는 행위를 관리하는 클래스
  * */
+@Slf4j
 public class ZzimController {
-
-    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private ZzimRepository zzimRepository = new ZzimRepository();
 
@@ -27,7 +27,7 @@ public class ZzimController {
      *
      * */
     public boolean zzim(Long itemNo, Long memberNo) {
-        logger.info("----- zzim -----");
+        log.info("----- zzim -----");
         boolean result = false;
         if(itemNo == null || memberNo == null) {
             throw new NullPointerException();
@@ -55,8 +55,8 @@ public class ZzimController {
             result = true;
         }
 
-        logger.debug("parameter itemNo : {}", itemNo, "memberNo : {}", memberNo);
-        logger.info("----------------");
+        log.debug("parameter itemNo : {}", itemNo, "memberNo : {}", memberNo);
+        log.info("----------------");
         return result;
     }
 

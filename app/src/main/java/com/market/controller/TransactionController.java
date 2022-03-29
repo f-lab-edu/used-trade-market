@@ -1,6 +1,7 @@
 package com.market.controller;
 
 import com.market.dto.ItemDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,9 +12,8 @@ import javax.annotation.Nonnull;
  * @version 1.0
  * 거래 관련 관리 클래스
  * */
+@Slf4j
 public class TransactionController {
-
-    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     ItemController itemController = new ItemController();
 
@@ -30,8 +30,8 @@ public class TransactionController {
         if(selectDealTypeCode == 1) {
             result = true;
         }
-        logger.info("isDirectTransaction method");
-        logger.debug("parameter dealType : {}", selectDealTypeCode);
+        log.info("isDirectTransaction method");
+        log.debug("parameter dealType : {}", selectDealTypeCode);
         return result;
     }
     /**
@@ -43,8 +43,8 @@ public class TransactionController {
     public boolean directTransaction(@Nonnull Long itemNo, @Nonnull Long memberNo) {
         TransactionController transactionController = new TransactionController();
         boolean result = false;
-        logger.info("directTransaction method");
-        logger.debug("parameter itemNo : {}", itemNo);
+        log.info("directTransaction method");
+        log.debug("parameter itemNo : {}", itemNo);
         transactionController.sendMoneyBuyerToCompany(itemNo);
 
         if(transactionController.purchaseConfirmation(itemNo, memberNo)) {
@@ -89,8 +89,8 @@ public class TransactionController {
      * @return result 비용 정상 지급 Y/N
      * */
     public boolean sendMoneyBuyerToCompany(@Nonnull Long itemNo) {
-        logger.info("sendMoneyBuyerToCompany method");
-        logger.debug("parameter itemNo : {}", itemNo);
+        log.info("sendMoneyBuyerToCompany method");
+        log.debug("parameter itemNo : {}", itemNo);
 
         if(itemNo == null) {
             throw new NullPointerException();
@@ -118,8 +118,8 @@ public class TransactionController {
         if(itemNo == null || memberNo == null) {
             throw new NullPointerException();
         }
-        logger.info("sendMoneyCompanyToSeller method");
-        logger.debug("parameter itemNo : {}", itemNo);
+        log.info("sendMoneyCompanyToSeller method");
+        log.debug("parameter itemNo : {}", itemNo);
 
         boolean result = false;
 
@@ -142,8 +142,8 @@ public class TransactionController {
         if(itemNo == null || memberNo == null) {
             throw new NullPointerException();
         }
-        logger.info("sendMoneyCompanyToBuyer method");
-        logger.debug("parameter itemNo : {]", itemNo);
+        log.info("sendMoneyCompanyToBuyer method");
+        log.debug("parameter itemNo : {]", itemNo);
 
         ItemDTO itemDTO = itemController.getItem(itemNo);
         itemDTO.setSendMoneyCompanyToBuyer(false);
@@ -164,8 +164,8 @@ public class TransactionController {
             throw new NullPointerException();
         }
         boolean result = false;
-        logger.info("purchaseConfirmation method");
-        logger.debug("parameter itemNo : {}", itemNo);
+        log.info("purchaseConfirmation method");
+        log.debug("parameter itemNo : {}", itemNo);
 
         ItemDTO itemDTO = itemController.getItem(itemNo);
         itemDTO.setPurchaseConfirmationYN(true);
@@ -194,7 +194,7 @@ public class TransactionController {
 
         itemController.updateItemInfo(itemNo, itemDTO);
 
-        logger.info("상품 배송이 완료되었습니다.");
+        log.info("상품 배송이 완료되었습니다.");
 
         result = true;
         return result;

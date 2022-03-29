@@ -3,6 +3,7 @@ package com.market.controller;
 import com.market.repository.ItemRepository;
 import com.market.dto.ItemDTO;
 import com.market.dto.MemberDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,9 +19,8 @@ import java.util.List;
  * @version 1.0
  *
  * */
+@Slf4j
 public class ItemController {
-
-    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private ItemRepository itemRepository = new ItemRepository();
     /**
@@ -28,7 +28,7 @@ public class ItemController {
      * @param itemDTO 상품정보
      * */
     public void registerItem(@Nullable ItemDTO itemDTO, @Nullable Long memberNo) {
-        logger.info("register method");
+        log.info("register method");
 
         boolean result = false;
 
@@ -38,7 +38,7 @@ public class ItemController {
 
         itemRepository.registerItem(itemDTO, memberNo);
 
-        logger.info("success item register");
+        log.info("success item register");
     }
 
     /**
@@ -50,12 +50,9 @@ public class ItemController {
             throw new NullPointerException();
         }
 
-        logger.info("-------------------------");
-        logger.info("Item recommendList");
+        log.info("Item recommendList");
 
-        logger.debug("parameter member : " + member);
-        logger.info("return List");
-        logger.info("-------------------------");
+        log.debug("parameter member : {} " + member);
 
         return new ArrayList<ItemDTO>();
     }
@@ -68,7 +65,7 @@ public class ItemController {
      * */
     public List<ItemDTO> showItemList(@Nonnull ItemDTO itemDTO) {
 
-        logger.info("Item viewItemList");
+        log.info("Item viewItemList");
 
         if(itemDTO == null) {
             throw new NullPointerException();
@@ -83,8 +80,8 @@ public class ItemController {
      * @return <code>itemNo</code>인 상품 객체
      * */
     public ItemDTO getItem(@Nonnull  Long itemNo) {
-        logger.info("getItem Method");
-        logger.info("itemNo : {}", itemNo);
+        log.info("getItem Method");
+        log.info("itemNo : {}", itemNo);
 
         if(itemNo == null) {
             throw new NullPointerException();

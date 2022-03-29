@@ -2,6 +2,7 @@ package com.market.controller;
 
 import com.market.repository.MemberRepository;
 import com.market.dto.MemberDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,9 +15,8 @@ import javax.annotation.Nullable;
  * @author 배영현
  * @version 1.0
  * */
+@Slf4j
 public class MemberController {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private MemberRepository memberRepository = new MemberRepository();
 
@@ -29,10 +29,10 @@ public class MemberController {
             throw new NullPointerException();
         }
         memberRepository.registerMember(member);
-        logger.info("Member register method");
-        logger.debug("parameter : " , member);
+        log.info("Member register method");
+        log.debug("parameter : " , member);
 
-        logger.info("success register member");
+        log.info("success register member");
     }
 
     /**
@@ -42,7 +42,7 @@ public class MemberController {
      * @return result
      * */
     public boolean isRegistered(@Nullable MemberDTO member) {
-        logger.info("isRegistered Method");
+        log.info("isRegistered Method");
         boolean result = true;
 
         if(member.getMemberNo() == null) {
@@ -56,9 +56,9 @@ public class MemberController {
      * 로그인 화면으로 보내는 메소드로 로그인 되어 있지 않은 경우에 호출되는 메소드
      * */
     public void goLogin() {
-        logger.info("-------------------------");
-        logger.info("Go login");
-        logger.info("-------------------------");
+        log.info("-------------------------");
+        log.info("Go login");
+        log.info("-------------------------");
     }
 
     /**
