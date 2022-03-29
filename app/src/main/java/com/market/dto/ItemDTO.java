@@ -1,4 +1,4 @@
-package com.flab;
+package com.market.dto;
 /**
  * 상품 속성 클래스
  *

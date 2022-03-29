@@ -1,4 +1,4 @@
-package com.flab;
+package com.market.dto;
 
 /**
  * 찜 상태를 나타내는 클래스
