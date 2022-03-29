@@ -3,6 +3,7 @@ package com.market.controller;
 import com.market.dto.ItemDTO;
 import com.market.dto.MemberDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -11,8 +12,11 @@ public class PointController {
 
     private final double pointAccumulate = 0.01;
 
-    MemberController memberController = new MemberController();
-    ItemController itemController = new ItemController();
+    @Autowired
+    MemberController memberController;
+
+    @Autowired
+    ItemController itemController;
     /**
      * 상품 번호가 <code>itemNo</code>인 상품에 대한 포인트를 구매자에게 지급하는 메소드
      * <code>itemNo</code>가 <code>null</code>인 경우에는 NullPointException을 반환한다.
@@ -28,7 +32,7 @@ public class PointController {
         double adaptPoint = itemDTO.getPrice() * pointAccumulate;
         memberInfo.setPoint(memberInfo.getPoint() + (int)adaptPoint);
 
-        memberController.updateMemberInfo(memberNo, memberInfo);
+        memberController.updateMemberInfo(memberInfo);
 
         log.info("success addPoint");
     }

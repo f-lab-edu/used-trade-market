@@ -3,7 +3,9 @@ package com.market.controller;
 import com.market.repository.ItemRepository;
 import com.market.dto.ItemDTO;
 import com.market.dto.MemberDTO;
+import com.market.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.units.qual.A;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,8 @@ import java.util.List;
 public class ItemController {
 
     @Autowired
-    private ItemRepository itemRepository;
+    private ItemService itemService;
+
     /**
      * <code>item</code>인 상품을 등록하는 메소드로 정상적으로 상품이 등록 되었을 경우 true를 반환한다.
      * @param itemDTO 상품정보
@@ -35,13 +38,11 @@ public class ItemController {
     public void registerItem(@Nullable ItemDTO itemDTO, @Nullable Long memberNo) {
         log.info("register method");
 
-        boolean result = false;
-
         if(itemDTO == null || memberNo == null) {
             throw new NullPointerException();
         }
 
-        itemRepository.registerItem(itemDTO, memberNo);
+        itemService.registerItem(itemDTO, memberNo);
 
         log.info("success item register");
     }
@@ -76,7 +77,7 @@ public class ItemController {
             throw new NullPointerException();
         }
 
-        return itemRepository.showItemList(itemDTO);
+        return itemService.showItemList(itemDTO);
     }
 
     /**
@@ -92,7 +93,7 @@ public class ItemController {
             throw new NullPointerException();
         }
 
-        return itemRepository.getItemSelectOne(itemNo);
+        return itemService.getItemSelectOne(itemNo);
     }
 
     /**
@@ -101,6 +102,6 @@ public class ItemController {
      * @param itemDTO       업데이트 될 상품 정보
      * */
     public void updateItemInfo(@Nonnull Long itemNo, @Nonnull ItemDTO itemDTO) {
-        itemRepository.updateItemInfo(itemNo, itemDTO);
+        itemService.updateItemInfo(itemNo, itemDTO);
     }
 }
