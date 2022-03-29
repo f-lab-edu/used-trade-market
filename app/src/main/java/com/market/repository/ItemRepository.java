@@ -5,6 +5,7 @@ import com.market.dto.MemberDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -16,6 +17,7 @@ import java.util.*;
  * 상품 정보를 저장하는 클래스
  * */
 @Slf4j
+@Repository
 public class ItemRepository {
 
     /**

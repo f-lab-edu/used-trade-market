@@ -6,6 +6,9 @@ import com.market.dto.MemberDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,9 +23,11 @@ import java.util.List;
  *
  * */
 @Slf4j
+@RestController
 public class ItemController {
 
-    private ItemRepository itemRepository = new ItemRepository();
+    @Autowired
+    private ItemRepository itemRepository;
     /**
      * <code>item</code>인 상품을 등록하는 메소드로 정상적으로 상품이 등록 되었을 경우 true를 반환한다.
      * @param itemDTO 상품정보

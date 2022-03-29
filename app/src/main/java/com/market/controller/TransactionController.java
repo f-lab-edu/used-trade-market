@@ -2,8 +2,9 @@ package com.market.controller;
 
 import com.market.dto.ItemDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.checkerframework.checker.units.qual.A;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Nonnull;
 
@@ -13,11 +14,14 @@ import javax.annotation.Nonnull;
  * 거래 관련 관리 클래스
  * */
 @Slf4j
+@RestController
 public class TransactionController {
 
-    ItemController itemController = new ItemController();
+    @Autowired
+    ItemController itemController;
 
-    PointController pointController = new PointController();
+    @Autowired
+    PointController pointController;
 
     /**
      * <code>dealType</code>는 거래 방법을 의미하는 파라미터로 해당 파라미터를 통해 직거래이면 <code>true</code> 직거래가 아니라 택배거래이면

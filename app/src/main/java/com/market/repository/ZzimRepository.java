@@ -2,6 +2,7 @@ package com.market.repository;
 
 import com.market.dto.ZzimDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * 찜 되어 있는 상품을 관리하는 클래스
  * */
 @Slf4j
+@Repository
 public class ZzimRepository {
     private static List<ZzimDTO> zzimList = new ArrayList<>();
 

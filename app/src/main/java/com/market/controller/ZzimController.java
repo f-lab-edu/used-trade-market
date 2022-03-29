@@ -4,8 +4,8 @@ import com.market.repository.ZzimRepository;
 import com.market.dto.ItemDTO;
 import com.market.dto.ZzimDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author 배영현
@@ -13,11 +13,14 @@ import org.slf4j.LoggerFactory;
  * 사용자가 상품에 대해 찜을 하는 행위를 관리하는 클래스
  * */
 @Slf4j
+@RestController
 public class ZzimController {
 
-    private ZzimRepository zzimRepository = new ZzimRepository();
+    @Autowired
+    private ZzimRepository zzimRepository;
 
-    private ItemController itemController = new ItemController();
+    @Autowired
+    private ItemController itemController;
 
     /**
      * 상품 번호가 <code>itemNo</code>인 상품을 찜 리스트에 추가한다.

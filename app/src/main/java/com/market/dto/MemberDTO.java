@@ -38,11 +38,6 @@ public class MemberDTO {
     private String memberName;
 
     /**
-     * 회원 유형
-     * */
-    private String memberType;
-
-    /**
      * 포인트
      * */
     private int point;
@@ -55,7 +50,6 @@ public class MemberDTO {
                 ", memberId='" + memberId + '\'' +
                 ", memberPassword='" + memberPassword + '\'' +
                 ", memberName='" + memberName + '\'' +
-                ", memberType='" + memberType + '\'' +
                 ", point=" + point +
                 '}';
     }

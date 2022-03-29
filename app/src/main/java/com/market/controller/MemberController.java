@@ -3,8 +3,11 @@ package com.market.controller;
 import com.market.repository.MemberRepository;
 import com.market.dto.MemberDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -16,15 +19,19 @@ import javax.annotation.Nullable;
  * @version 1.0
  * */
 @Slf4j
+@RestController
+@RequestMapping("/member")
 public class MemberController {
 
-    private MemberRepository memberRepository = new MemberRepository();
+    @Autowired
+    private MemberRepository memberRepository;
 
     /**
      * 회원 정보인 <code>member</code>를 통해 회원이 서비스를 이용할 수 있도록 가입을 할 수 있도록 한다.
      * @param member 회원 정보 입력
      * */
-    public void registerMember(@Nonnull MemberDTO member) {
+    @PostMapping("/registerMember")
+    public void registerMember(@RequestBody @Nonnull MemberDTO member) {
         if(member == null) {
             throw new NullPointerException();
         }
@@ -34,6 +41,18 @@ public class MemberController {
 
         log.info("success register member");
     }
+
+    /**
+     * <code>memberNo</code>인 회원 정보를 갖는 회원을 회원 객체를 저장하는 <code>memberRepository</code>에서 갖고 오는 메소드
+     * */
+    public MemberDTO getMemberSelectOne(@RequestBody @Nonnull Long memberNo) {
+        if(memberNo == null) {
+            throw new NullPointerException();
+        }
+        return memberRepository.getMemberSelectOne(memberNo);
+    }
+
+
 
     /**
      * 회원만 사용할 수 있도록 체크하는 메서드
@@ -61,15 +80,7 @@ public class MemberController {
         log.info("-------------------------");
     }
 
-    /**
-     * <code>memberNo</code>인 회원 정보를 갖는 회원을 회원 객체를 저장하는 <code>memberRepository</code>에서 갖고 오는 메소드
-     * */
-    public MemberDTO getMemberSelectOne(@Nonnull Long memberNo) {
-        if(memberNo == null) {
-            throw new NullPointerException();
-        }
-        return memberRepository.getMemberSelectOne(memberNo);
-    }
+
 
     /**
      * <code>memberNo</code>의 회원번호와 <code>memberInfo</code>인 회원 정보를 갖는 회원의 정보를

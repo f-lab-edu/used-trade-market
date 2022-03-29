@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ItemManagerTest {
+public class ItemControllerTest {
 
     ItemController itemController = new ItemController();
 
