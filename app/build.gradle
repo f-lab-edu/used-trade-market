@@ -74,7 +74,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.flab.Prototype'
+    mainClass = 'com.market.Application'
 }
 
 // gradle build시 한글 깨짐 문제 해결

@@ -128,9 +128,9 @@ public class MemberControllerTest {
         changeMember3.setMemberName("바뀐이순신");
 
         // when
-        memberController.updateMemberInfo(changeMember.getMemberNo(), changeMember);
-        memberController.updateMemberInfo(changeMember2.getMemberNo(), changeMember2);
-        memberController.updateMemberInfo(changeMember3.getMemberNo(), changeMember3);
+        memberController.updateMemberInfo(changeMember);
+        memberController.updateMemberInfo(changeMember2);
+        memberController.updateMemberInfo(changeMember3);
 
         // then
         assertThat(changeMember).isEqualTo(memberController.getMemberSelectOne(changeMember.getMemberNo()));
