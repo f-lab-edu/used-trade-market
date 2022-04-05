@@ -1,5 +1,6 @@
 package com.market.service.impl;
 
+import com.market.dao.MemberDAO;
 import com.market.dto.MemberDTO;
 import com.market.repository.MemberRepository;
 import com.market.service.MemberService;
@@ -7,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -14,22 +16,25 @@ import java.util.Map;
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
+    private MemberDAO memberDAO;
+
+    @Autowired
     private MemberRepository memberRepository;
 
     @Override
     public void registerMember(MemberDTO memberDTO) {
-        memberRepository.registerMember(memberDTO);
+        memberDAO.registerMember(memberDTO);
     }
 
     @Override
-    public Map<Long, MemberDTO> getMembers() {
-        return memberRepository.getAllMember();
+    public List<MemberDTO> getMembers() {
+        return memberDAO.getAllMember();
     }
 
     @Override
     public void updateMemberInfo(MemberDTO memberDTO) {
         Long memberNo = memberDTO.getMemberNo();
-        memberRepository.updateMemberInfo(memberNo, memberDTO);
+        memberDAO.updateMemberInfo(memberDTO);
     }
 
     @Override

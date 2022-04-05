@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.dao.MemberDAO">
+    <insert id="registerMember" parameterType="com.market.dto.MemberDTO">
+        INSERT INTO MEMBER
+            (
+             memberId,
+             memberPassword,
+             memberName,
+             address,
+             memberpoint
+            )
+        VALUES
+            (
+             #{memberId},
+             #{memberPassword},
+             #{memberName},
+             #{address},
+             #{point}
+            )
+    </insert>
+
+    <select id="getAllMember" resultType="com.market.dto.MemberDTO">
+        SELECT
+            memberNo,
+            memberId,
+            memberPassword,
+            memberName,
+            address,
+            memberpoint
+        FROM MEMBER
+    </select>
+
+    <update id="updateMemberInfo" parameterType="com.market.dto.MemberDTO">
+        UPDATE MEMBER
+        SET memberName = #{memberName},
+            memberPassword = #{memberPassword},
+            address = #{address}
+        WHERE memberNo = #{memberNo}
+    </update>
+</mapper>
