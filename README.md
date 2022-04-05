@@ -12,4 +12,6 @@
    https://fightingdeveloper.tistory.com/10 <br>
 5. SpringBoot 적용 => 블로그 정리<br>
    https://fightingdeveloper.tistory.com/11 <br>
+6. Mybatis 적용 => 블로그 정리<br>
+   https://fightingdeveloper.tistory.com/13 <br>
    
