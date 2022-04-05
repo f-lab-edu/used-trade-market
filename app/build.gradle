@@ -9,6 +9,9 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'org.springframework.boot' version '2.6.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 repositories {
@@ -39,19 +42,34 @@ dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.31'
 
     // https://mvnrepository.com/artifact/log4j/log4j
-    implementation group: 'log4j', name: 'log4j', version: '1.2.16'
+    //implementation group: 'log4j', name: 'log4j', version: '1.2.17'
 
     //implementation 'org.slf4j:slf4j-simple:1.7.31'
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
-    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.31'
+    //implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.31'
 
     // JUnit 추가
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+    // --> 'org.junit.jupiter:junit-jupiter-engine' 으로 버전 작성 안하니
+    //Execution failed for task ':app:test'.
+    //> There were failing tests. See the report at:
+    // file:///C:/workspace/used-deal-market/app/build/reports/tests/test/index.html
+    // 에러 발생해서 :5.6.0 추가를 해 주니 해결
+    // exception 내용은 TestSuiteExecuteionException
 
     // AssertJ 추가
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.22.0'
+
+    // spring boot 추가
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // lombok 추가
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
 }
 
 application {
@@ -66,9 +84,3 @@ tasks.withType(JavaCompile) {
 
 // jar 실행 가능하도록 추가
 apply plugin : 'java'
-
-jar {
-    manifest {
-        attributes 'Main-Class' : 'com.flab.Prototype'
-    }
-}
