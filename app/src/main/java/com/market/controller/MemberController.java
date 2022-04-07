@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,7 +49,7 @@ public class MemberController {
      * 모든 회원의 정보를 반환한다.
      * */
     @RequestMapping("/getMembers")
-    public Map<Long, MemberDTO> getMembers() {
+    public List<MemberDTO> getMembers() {
         return memberService.getMembers();
     }
 
@@ -95,7 +96,7 @@ public class MemberController {
      * @param memberInfo    회원 정보
      * */
     @PostMapping("/updateMember")
-    public void updateMemberInfo(@Nonnull MemberDTO memberInfo) {
+    public void updateMemberInfo(@RequestBody @Nonnull MemberDTO memberInfo) {
         if(memberInfo == null) {
             throw new NullPointerException();
         }

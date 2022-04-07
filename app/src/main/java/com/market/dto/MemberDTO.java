@@ -38,18 +38,23 @@ public class MemberDTO {
     private String memberName;
 
     /**
+     * 주소
+     * */
+    private String address;
+
+    /**
      * 포인트
      * */
     private int point;
 
-
     @Override
     public String toString() {
-        return "Member{" +
+        return "MemberDTO{" +
                 "memberNo=" + memberNo +
                 ", memberId='" + memberId + '\'' +
                 ", memberPassword='" + memberPassword + '\'' +
                 ", memberName='" + memberName + '\'' +
+                ", address='" + address + '\'' +
                 ", point=" + point +
                 '}';
     }
