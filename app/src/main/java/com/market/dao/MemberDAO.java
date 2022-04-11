@@ -13,4 +13,8 @@ public interface MemberDAO {
     List<MemberDTO> getAllMember();
 
     void updateMemberInfo(MemberDTO memberDTO);
+
+    MemberDTO getMemberSelectOne(Long memberNo);
+
+    void deleteMember(Long memberNo);
 }

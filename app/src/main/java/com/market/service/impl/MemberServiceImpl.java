@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -39,6 +38,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberDTO getMemberSelectOne(Long memberNo) {
-        return memberRepository.getMemberSelectOne(memberNo);
+        return memberDAO.getMemberSelectOne(memberNo);
+    }
+
+    @Override
+    public void deleteMember(Long memberNo) {
+        memberDAO.deleteMember(memberNo);
     }
 }
