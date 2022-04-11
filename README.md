@@ -14,4 +14,5 @@
    https://fightingdeveloper.tistory.com/11 <br>
 6. Mybatis 적용 => 블로그 정리<br>
    https://fightingdeveloper.tistory.com/13 <br>
+7. CI/CD 적용 => 블로그 정리<br>
    
