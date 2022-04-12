@@ -11,15 +11,15 @@ pipeline {
                   echo 'Git Checkout Success!'
               }
     }
-    stage('Test') {
+    /* stage('Test') {
         steps {
             sh 'gradle test'
             echo 'test success'
         }
-      }
+      } */
     stage('Build') {
       steps {
-           sh 'gradle clean build --exclude-task test --exclude-task asciidoctor'
+           sh './gradlew build'
            echo 'build success'
       }
     }
