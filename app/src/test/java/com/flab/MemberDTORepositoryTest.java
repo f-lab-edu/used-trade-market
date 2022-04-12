@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemberDTORepositoryTest {
 
-    MemberRepository memberRepository = new MemberRepository();
+    /*MemberRepository memberRepository = new MemberRepository();
 
     @DisplayName("회원 등록 확인")
     @Test
@@ -31,5 +31,5 @@ public class MemberDTORepositoryTest {
         // then : 어떠한 결과가 나와야 한다.
         assertThat(checkMember).isEqualTo(member);
 
-    }
+    }*/
 }

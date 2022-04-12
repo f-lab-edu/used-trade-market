@@ -27,12 +27,12 @@ public class PointController {
         log.info("addPoint Method");
         log.debug("parameter itemNo : {}", itemNo);
 
-        MemberDTO memberInfo = memberController.getMemberSelectOne(memberNo);
+        /*MemberDTO memberInfo = memberController.getMemberSelectOne(memberNo);
         ItemDTO itemDTO = itemController.getItem(itemNo);
         double adaptPoint = itemDTO.getPrice() * pointAccumulate;
         memberInfo.setPoint(memberInfo.getPoint() + (int)adaptPoint);
 
-        memberController.updateMemberInfo(memberInfo);
+        memberController.updateMemberInfo(memberInfo);*/
 
         log.info("success addPoint");
     }
