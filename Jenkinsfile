@@ -19,7 +19,7 @@ pipeline {
       } */
     stage('Build') {
       steps {
-           sh './gradlew build'
+           sh 'gradle clean build'
            echo 'build success'
       }
     }
