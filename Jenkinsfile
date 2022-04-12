@@ -23,5 +23,37 @@ pipeline {
            echo 'build success'
       }
     }
+    stage('Send Jar') {
+        steps {
+            sshPublisher(
+                publishers:
+                    [
+                        sshPublisherDesc(
+                            configName: 'chunjaeYH',
+                            transfers:
+                                [
+                                    sshTransfer(
+                                        cleanRemote: false,
+                                        excludes: '',
+                                        execCommand: 'sh /usr/usedmarket/script/deploy.sh',
+                                        execTimeout: 120000,
+                                        flatten: false,
+                                        makeEmptyDirs: false,
+                                        noDefaultExcludes: false,
+                                        patternSeparator: '[, ]+',
+                                        remoteDirectory: '/usr/usedmarket/',
+                                        remoteDirectorySDF: false,
+                                        removePrefix: 'build/libs',
+                                        sourceFiles: 'build/libs/app.jar')],
+                                        usePromotionTimestamp: false,
+                                        useWorkspaceInPromotion: false,
+                                        verbose: true
+                                        )
+                                ]
+                        )
+                    ]
+            )
+        }
+    }
   }
 }
