@@ -65,6 +65,13 @@ dependencies {
     // mybatis 추가
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
     runtimeOnly 'mysql:mysql-connector-java:8.0.25'
+
+    // spring boot starter validation 추가
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.6.6'
+    
+    // HATEOAS 추가
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '2.6.6'
+
 }
 
 application {

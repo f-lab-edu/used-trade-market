@@ -25,7 +25,17 @@ public class MemberDAOImpl implements MemberDAO {
     }
 
     @Override
+    public MemberDTO getMemberSelectOne(Long memberNo) {
+        return sqlSession.selectOne("getMemberSelectOne", memberNo);
+    }
+
+    @Override
     public void updateMemberInfo(MemberDTO memberDTO) {
         sqlSession.update("updateMemberInfo", memberDTO);
+    }
+
+    @Override
+    public void deleteMember(Long memberNo) {
+        sqlSession.delete("deleteMember", memberNo);
     }
 }

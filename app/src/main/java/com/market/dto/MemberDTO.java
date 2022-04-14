@@ -1,10 +1,17 @@
 package com.market.dto;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +22,8 @@ import java.util.List;
  * @version 1.0
  * */
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberDTO {
 
     /**
@@ -25,21 +34,26 @@ public class MemberDTO {
     /**
      * 회원 아이디
      * */
+    @NotNull
     private String memberId;
 
     /**
      * 회원 비밀번호
      * */
+    @NotNull
     private String memberPassword;
 
     /**
      * 회원 이름
      * */
+    @NotNull
+    @Size(min = 2, message = "이름은 2글자 이상 입력해 주세요.")
     private String memberName;
 
     /**
      * 주소
      * */
+    @NotEmpty
     private String address;
 
     /**

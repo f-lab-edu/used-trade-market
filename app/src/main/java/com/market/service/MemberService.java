@@ -19,4 +19,7 @@ public interface MemberService {
 
     // 회원 한명 정보 반환
     public MemberDTO getMemberSelectOne(Long memberNo);
+
+    // 회원 삭제
+    public void deleteMember(Long memberNo);
 }

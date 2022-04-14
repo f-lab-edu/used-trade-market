@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.market.dao.MemberDAO">
-    <insert id="registerMember" parameterType="com.market.dto.MemberDTO">
+    <insert id="registerMember" parameterType="com.market.dto.MemberDTO" useGeneratedKeys="true" keyProperty="memberNo">
         INSERT INTO MEMBER
             (
              memberId,
@@ -31,7 +31,26 @@
         FROM MEMBER
     </select>
 
-    <update id="updateMemberInfo" parameterType="com.market.dto.MemberDTO">
+    <select id="getMemberSelectOne" resultType="com.market.dto.MemberDTO" parameterType="long">
+        SELECT
+            memberNo,
+            memberId,
+            memberPassword,
+            memberName,
+            address,
+            memberpoint
+        FROM MEMBER
+        WHERE memberNo = #{memberNo}
+
+    </select>
+
+    <delete id="deleteMember" parameterType="long">
+        DELETE
+        FROM MEMBER
+        WHERE memberNo = #{memberNo}
+    </delete>
+
+    <update id="updateMemberInfo" parameterType="com.market.dto.MemberDTO" useGeneratedKeys="true" keyProperty="memberNo">
         UPDATE MEMBER
         SET memberName = #{memberName},
             memberPassword = #{memberPassword},
