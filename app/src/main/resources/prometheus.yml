@@ -1,0 +1,12 @@
+global:
+  external_labels:
+    monitor: codelab-monitor
+  scrape_interval: 5s
+scrape_configs:
+  -
+    job_name: prometheus
+    metrics_path: /actuator/prometheus
+    static_configs:
+      -
+        targets:
+          - "49.50.175.118:8080"

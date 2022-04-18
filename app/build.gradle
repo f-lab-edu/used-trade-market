@@ -72,11 +72,18 @@ dependencies {
     // HATEOAS 추가
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '2.6.6'
 
+    // Actuator 적용
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.6.6'
+    
+    // prometheus 적용
+    implementation group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.8.5'
+
+
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.flab.Prototype'
+    mainClass = 'com.market.Application'
 }
 
 // gradle build시 한글 깨짐 문제 해결
