@@ -38,4 +38,9 @@ public class MemberDAOImpl implements MemberDAO {
     public void deleteMember(Long memberNo) {
         sqlSession.delete("deleteMember", memberNo);
     }
+
+    @Override
+    public MemberDTO findByUserId(String userId) {
+        return sqlSession.selectOne("findByUserId",userId);
+    }
 }

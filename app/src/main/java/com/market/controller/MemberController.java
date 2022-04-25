@@ -37,7 +37,7 @@ public class MemberController {
      * 회원 정보인 <code>member</code>를 통해 회원이 서비스를 이용할 수 있도록 가입을 할 수 있도록 한다.
      * @param member 회원 정보 입력
      * */
-    @PostMapping
+    @PostMapping("/register")
     public EntityModel<MemberDTO> registerMember(@Valid @RequestBody @Nonnull MemberDTO member) {
         if(member == null) {
             throw new NullPointerException();
@@ -134,32 +134,5 @@ public class MemberController {
 
         return entityModel;
     }
-
-    /**
-     * 회원만 사용할 수 있도록 체크하는 메서드
-     * 회원 정보가 <code>member</code>인 객체를 확인하고 정보가 없으면 false를 반환하고 정보가 있으면 true를 반환한다.
-     * @param member
-     * @return result
-     * */
-    public boolean isRegistered(@Nullable MemberDTO member) {
-        log.info("isRegistered Method");
-        boolean result = true;
-
-        if(member.getMemberNo() == null) {
-            result = false;
-        }
-
-        return result;
-    }
-
-    /**
-     * 로그인 화면으로 보내는 메소드로 로그인 되어 있지 않은 경우에 호출되는 메소드
-     * */
-    public void goLogin() {
-        log.info("-------------------------");
-        log.info("Go login");
-        log.info("-------------------------");
-    }
-
 
 }

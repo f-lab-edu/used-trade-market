@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -60,6 +61,15 @@ public class MemberDTO {
      * 포인트
      * */
     private int point;
+
+    /**
+     * 회원 역할
+     * */
+    private String userRole;
+
+    public void encodePassword(PasswordEncoder passwordEncoder) {
+        this.memberPassword = passwordEncoder.encode(this.memberPassword);
+    }
 
     @Override
     public String toString() {

@@ -8,7 +8,8 @@
              memberPassword,
              memberName,
              address,
-             memberpoint
+             memberpoint,
+             userRole
             )
         VALUES
             (
@@ -16,7 +17,8 @@
              #{memberPassword},
              #{memberName},
              #{address},
-             #{point}
+             #{point},
+             #{userRole}
             )
     </insert>
 
@@ -27,7 +29,8 @@
             memberPassword,
             memberName,
             address,
-            memberpoint
+            memberpoint,
+            userRole
         FROM MEMBER
     </select>
 
@@ -38,7 +41,8 @@
             memberPassword,
             memberName,
             address,
-            memberpoint
+            memberpoint,
+            userRole
         FROM MEMBER
         WHERE memberNo = #{memberNo}
 
@@ -57,4 +61,17 @@
             address = #{address}
         WHERE memberNo = #{memberNo}
     </update>
+
+    <select id="findByUserId" parameterType="string" resultType="com.market.dto.MemberDTO">
+        SELECT
+            memberNo,
+            memberId,
+            memberPassword,
+            memberName,
+            address,
+            memberpoint,
+            userRole
+        FROM MEMBER
+        WHERE memberId = #{memberId}
+    </select>
 </mapper>
