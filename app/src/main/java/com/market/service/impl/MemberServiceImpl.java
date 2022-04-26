@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        MemberDTO member = memberDAO.findByUserId(userId);
+        MemberDTO member = memberDAO.findByMemberId(userId);
         if(member == null) {
             throw new UsernameNotFoundException(userId);
         }
@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
         return User.builder()
                 .username(member.getMemberId())
                 .password(member.getMemberPassword())
-                .roles(member.getUserRole())
+                .roles(member.getMemberRole())
                 .build();
     }
 

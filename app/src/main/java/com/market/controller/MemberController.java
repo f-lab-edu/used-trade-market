@@ -3,6 +3,7 @@ package com.market.controller;
 import com.market.exception.UserNotFoundException;
 import com.market.dto.MemberDTO;
 import com.market.service.MemberService;
+import com.market.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -133,6 +135,11 @@ public class MemberController {
         entityModel.add(linkTo2.withRel("all-members"));
 
         return entityModel;
+    }
+
+    @GetMapping("/myInfo")
+    public MemberDTO myInfo(HttpSession session) {
+        return SessionUtil.getSession(session);
     }
 
 }

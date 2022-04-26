@@ -18,5 +18,7 @@ public interface MemberDAO {
 
     void deleteMember(Long memberNo);
 
-    MemberDTO findByUserId(String userId);
+    MemberDTO findByMemberId(String memberId);
+
+    MemberDTO findByMemberEmail(String memberEmail);
 }
