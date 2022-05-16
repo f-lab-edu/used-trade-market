@@ -78,6 +78,12 @@ dependencies {
     // prometheus 적용
     implementation group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.8.5'
 
+    // 스프링 시큐리티 적용
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.6.6'
+
+    // oauth2 의존성 추가
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '2.6.7'
+
 
 }
 

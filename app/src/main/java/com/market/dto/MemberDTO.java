@@ -2,13 +2,12 @@ package com.market.dto;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,6 +23,7 @@ import java.util.List;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class MemberDTO {
 
     /**
@@ -61,15 +61,18 @@ public class MemberDTO {
      * */
     private int point;
 
-    @Override
-    public String toString() {
-        return "MemberDTO{" +
-                "memberNo=" + memberNo +
-                ", memberId='" + memberId + '\'' +
-                ", memberPassword='" + memberPassword + '\'' +
-                ", memberName='" + memberName + '\'' +
-                ", address='" + address + '\'' +
-                ", point=" + point +
-                '}';
+    /**
+     * 회원 역할
+     * */
+    private String memberRole;
+
+    /**
+     * 유저 이메일
+     * */
+    @Email
+    private String memberEmail;
+
+    public void encodePassword(PasswordEncoder passwordEncoder) {
+        this.memberPassword = passwordEncoder.encode(this.memberPassword);
     }
 }

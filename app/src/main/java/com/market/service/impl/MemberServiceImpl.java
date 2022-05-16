@@ -6,13 +6,18 @@ import com.market.repository.MemberRepository;
 import com.market.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
 @Service
-public class MemberServiceImpl implements MemberService {
+public class MemberServiceImpl implements MemberService, UserDetailsService {
 
     @Autowired
     private MemberDAO memberDAO;
@@ -20,8 +25,26 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Override
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+        MemberDTO member = memberDAO.findByMemberId(userId);
+        if(member == null) {
+            throw new UsernameNotFoundException(userId);
+        }
+
+        return User.builder()
+                .username(member.getMemberId())
+                .password(member.getMemberPassword())
+                .roles(member.getMemberRole())
+                .build();
+    }
+
     @Override
     public void registerMember(MemberDTO memberDTO) {
+        memberDTO.encodePassword(passwordEncoder);
         memberDAO.registerMember(memberDTO);
     }
 
