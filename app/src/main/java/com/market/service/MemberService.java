@@ -22,4 +22,5 @@ public interface MemberService {
 
     // 회원 삭제
     public void deleteMember(Long memberNo);
+
 }
