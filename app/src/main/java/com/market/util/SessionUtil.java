@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 public class SessionUtil {
 
-<<<<<<< HEAD
     public static final String LOGIN_MEMBER = "loginMember";
 
     /**
@@ -34,14 +33,6 @@ public class SessionUtil {
      * 세션에 담긴 회원 정보를 반환한다.
      * */
     public static MemberDTO getSession(HttpSession session) {
-        return (MemberDTO)session.getAttribute(LOGIN_MEMBER);
-=======
-    public static void createSession(HttpSession session, MemberDTO member) {
-        session.setAttribute("member", member);
-    }
-
-    public static MemberDTO getSession(HttpSession session) {
-        return (MemberDTO)session.getAttribute("member");
->>>>>>> 0b6432414247810a809a7973233cc3b89dab82e8
+        return (MemberDTO) session.getAttribute(LOGIN_MEMBER);
     }
 }
