@@ -2,6 +2,8 @@ package com.market.dto;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ApiModel(description = "사용자 상세 정보를 위한 도메인 객체")
 public class MemberDTO {
 
     /**
@@ -48,12 +51,14 @@ public class MemberDTO {
      * */
     @NotNull
     @Size(min = 2, message = "이름은 2글자 이상 입력해 주세요.")
+    @ApiModelProperty(notes =  "사용자 이름을 입력해 주세요.")
     private String memberName;
 
     /**
      * 주소
      * */
     @NotEmpty
+    @ApiModelProperty(notes =  "사용자 주소를 입력해 주세요.")
     private String address;
 
     /**
