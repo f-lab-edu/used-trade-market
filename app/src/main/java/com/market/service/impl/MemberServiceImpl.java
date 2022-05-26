@@ -43,6 +43,12 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
     }
 
     @Override
+    public MemberDTO findUserByUsername(String userId) {
+        return memberDAO.findByMemberId(userId);
+    }
+
+
+    @Override
     public void registerMember(MemberDTO memberDTO) {
         memberDTO.encodePassword(passwordEncoder);
         memberDAO.registerMember(memberDTO);
