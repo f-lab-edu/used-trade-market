@@ -1,7 +1,11 @@
 package com.market.config;
 
+import com.market.controller.MemberController;
+import com.market.dto.MemberDTO;
 import com.market.dto.fix.Role;
 import com.market.service.CustomOAuth2UserService;
+import com.market.service.MemberService;
+import com.market.util.SessionUtil;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
@@ -12,9 +16,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.WebExpressionVoter;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
@@ -30,8 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
 
-    public SecurityConfig(CustomOAuth2UserService customOAuth2UserService) {
+    private final MemberService memberService;
+
+    public SecurityConfig(CustomOAuth2UserService customOAuth2UserService, MemberService memberService) {
         this.customOAuth2UserService = customOAuth2UserService;
+        this.memberService = memberService;
     }
 
     public AccessDecisionManager accessDecisionManager() {
@@ -73,6 +86,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated().accessDecisionManager(accessDecisionManager())
                 .and()
                 .formLogin().loginPage("/login")
+                .successHandler(
+                        new AuthenticationSuccessHandler() {
+                            @Override
+                            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+                                MemberDTO member = memberService.findUserByUsername(authentication.getName());
+                                SessionUtil.createSession(request.getSession(), member);
+                            }
+                        }
+                )
                 .and()
                 .oauth2Login().loginPage("/login")
                 .and()
