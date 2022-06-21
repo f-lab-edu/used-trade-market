@@ -40,8 +40,8 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
     }
 
     @Override
-    public MemberDTO userFindById(String id) {
-        return memberDAO.findByMemberId(id);
+    public MemberDTO findUserByUsername(String userId) {
+        return memberDAO.findByMemberId(userId);
     }
 
     @Override
