@@ -32,21 +32,6 @@ public class ItemDTO {
     private String title;
 
     /**
-     * 대분류 카테고리 번호
-     * */
-    private int bigCategoryNo;
-
-    /**
-     * 중분류 카테고리 번호
-     * */
-    private int middleCategoryNo;
-
-    /**
-     * 소분류 카테고리 번호
-     * */
-    private int smallCategoryNo;
-
-    /**
      * 거래지역
      * */
     private String address;
@@ -70,11 +55,6 @@ public class ItemDTO {
      * 설명
      * */
     private String remark;
-
-    /**
-     * 태그
-     * */
-    private String tag;
 
     /**
      * 수량
@@ -116,15 +96,11 @@ public class ItemDTO {
                 ", memberNo=" + memberNo +
                 ", imgNo='" + imgNo + '\'' +
                 ", title='" + title + '\'' +
-                ", bigCategoryNo=" + bigCategoryNo +
-                ", middleCategoryNo=" + middleCategoryNo +
-                ", smallCategoryNo=" + smallCategoryNo +
                 ", address='" + address + '\'' +
                 ", UsedYN=" + UsedYN +
                 ", exchangeYN=" + exchangeYN +
                 ", price=" + price +
                 ", remark='" + remark + '\'' +
-                ", tag='" + tag + '\'' +
                 ", itemNum=" + itemNum +
                 ", sendMoneySellerToCompany=" + sendMoneySellerToCompany +
                 ", sendMoneyCompanyToBuyer=" + sendMoneyCompanyToBuyer +

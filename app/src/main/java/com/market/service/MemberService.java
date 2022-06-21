@@ -23,4 +23,6 @@ public interface MemberService {
     // 회원 삭제
     public void deleteMember(Long memberNo);
 
+    // 아이디로 회원 정보 조회
+    public MemberDTO userFindById(String id);
 }

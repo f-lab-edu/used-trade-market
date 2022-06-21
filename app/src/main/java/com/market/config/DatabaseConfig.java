@@ -10,7 +10,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = "com.market.repository")
+@MapperScan(basePackages = "com.market.dao")
 public class DatabaseConfig {
 
     @Bean
