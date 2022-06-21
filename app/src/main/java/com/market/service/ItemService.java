@@ -6,11 +6,12 @@ import java.util.List;
 
 public interface ItemService {
 
-    public void registerItem(ItemDTO itemDTO, Long memberNo);
+    public void registerItem(String registerId, ItemDTO itemDTO);
 
-    public List<ItemDTO> showItemList(ItemDTO itemDTO);
+    public List<ItemDTO> showItemList();
 
     public ItemDTO getItemSelectOne(Long itemNo);
 
     public void updateItemInfo(Long ItemNo, ItemDTO itemDTO);
+
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.dao.ItemDAO">
+    <insert id="registerItem" parameterType="com.market.dto.ItemDTO" useGeneratedKeys="true" keyProperty="itemNo">
+        INSERT INTO item
+        (
+            memberNo,
+            img,
+            title,
+            address,
+            usedYN,
+            exchangeYN,
+            price,
+            remark,
+            itemNum,
+            transactionYN
+        )
+        VALUES
+            (
+                #{memberNo},
+                #{imgNo},
+                #{title},
+                #{address},
+                #{usedYN},
+                #{exchangeYN},
+                #{price},
+                #{remark},
+                #{itemNum},
+                #{transactionYN}
+            )
+    </insert>
+    <select id="showItemList" resultType="com.market.dto.ItemDTO">
+        SELECT itemNo,
+            memberNo,
+            img,
+            title,
+            address,
+            usedYN,
+            exchangeYN,
+            price,
+            remark,
+            itemNum,
+            transactionYN
+        FROM ITEM
+    </select>
+
+    <select id="getItemSelectOne" resultType="com.market.dto.ItemDTO" parameterType="long">
+        SELECT itemNo,
+               memberNo,
+               img,
+               title,
+               address,
+               usedYN,
+               exchangeYN,
+               price,
+               remark,
+               itemNum,
+               transactionYN
+        FROM ITEM
+        WHERE itemNo = #{itemNO}
+    </select>
+</mapper>

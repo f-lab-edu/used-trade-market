@@ -23,9 +23,6 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
     private MemberDAO memberDAO;
 
     @Autowired
-    private MemberRepository memberRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -46,7 +43,6 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
     public MemberDTO findUserByUsername(String userId) {
         return memberDAO.findByMemberId(userId);
     }
-
 
     @Override
     public void registerMember(MemberDTO memberDTO) {

@@ -34,9 +34,8 @@ public class ItemRepository {
      * <code>item</code>인 상품정보를 상품 저장소 <code>itemList</code>에 저장한다.
      * <code>key</code>는 상품 번호를 나타내며 <code>key</code>는 1씩 증가해서 저장될 수 있도록 한다.
      * */
-    public void registerItem(ItemDTO itemDTO, Long memberNo) {
+    public void registerItem(ItemDTO itemDTO) {
         itemDTO.setItemNo(++key);
-        itemDTO.setMemberNo(memberNo);
         itemDTO.setTransactionYN(true);
         itemList.put(key, itemDTO);
 
@@ -67,29 +66,6 @@ public class ItemRepository {
         return new ArrayList<ItemDTO>();
     }
 
-    /**
-     * <code>item</code>인 상품 객체의 <code>bigCategory</code> 대분류, <code>middleCategory</code> 중분류, <code>smallCaterogy</code> 소분류를
-     * 통해 기존 <code>itemList</code>에서 각각의 카테고리에 해당 하는 상품 객체만 List인 <code>categoryItemList</code>에 저장하여 반환한다.
-     * */
-    public List<ItemDTO> showItemList(ItemDTO itemDTO) {
-        log.info("----- ItemRepository showItemList -----");
-
-        List<ItemDTO> categoryItemDTOList = new ArrayList<>();
-        int bigCategory = itemDTO.getBigCategoryNo();
-        int middleCategory = itemDTO.getMiddleCategoryNo();
-        int smallCategory = itemDTO.getSmallCategoryNo();
-
-        Iterator<Long> iter = itemList.keySet().iterator();
-
-        while(iter.hasNext()) {
-            Long key = iter.next();
-            if(itemList.get(key).getBigCategoryNo() == bigCategory && itemList.get(key).getMiddleCategoryNo() == middleCategory
-                    && itemList.get(key).getSmallCategoryNo() == smallCategory) {
-                categoryItemDTOList.add(itemList.get(key));
-            }
-        }
-        return categoryItemDTOList;
-    }
 
     /**
      * <code>item</code>인 상품에 관련된 변경 내용이 있을 경우 해당 메소드를 통해 상품 저장소인 <code>itemList</code>에 저장한다.
