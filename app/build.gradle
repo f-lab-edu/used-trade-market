@@ -90,6 +90,12 @@ dependencies {
     // swagger-ui
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
 
+    // redis 적용
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.6.3'
+
+    // session redis
+    implementation group: 'org.springframework.session', name: 'spring-session-data-redis', version: '2.6.3'
+
 
 
 
