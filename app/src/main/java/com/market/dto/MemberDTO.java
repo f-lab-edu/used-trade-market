@@ -13,6 +13,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @ApiModel(description = "사용자 상세 정보를 위한 도메인 객체")
-public class MemberDTO {
+public class MemberDTO implements Serializable {
 
     /**
      * 회원 번호
