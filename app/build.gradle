@@ -96,6 +96,9 @@ dependencies {
     // session redis
     implementation group: 'org.springframework.session', name: 'spring-session-data-redis', version: '2.6.3'
 
+    // cache
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '2.6.3'
+
 
 
 
